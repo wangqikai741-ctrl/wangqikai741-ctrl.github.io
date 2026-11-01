@@ -24,6 +24,7 @@
     --accent-soft: #E9EFF8;
     --box: #F5F7FA;
     --serif: Charter, "Bitstream Charter", "Sitka Text", Cambria, Georgia, serif;
+    --display: Charter, "Bitstream Charter", "Sitka Heading", "Sitka Text", Cambria, Georgia, serif;
     --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     color-scheme: light;
   }
@@ -53,6 +54,7 @@
   }
 
   * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
   html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
   body {
@@ -85,6 +87,7 @@
   }
   .hero-text { min-width: 0; max-width: 40rem; }
   h1 {
+    font-family: var(--display);
     font-size: 2.75rem;
     font-weight: 600;
     line-height: 1.1;
@@ -174,7 +177,7 @@
     height: 2px;
     background: var(--accent);
   }
-  h3 { font-size: 1.25rem; font-weight: 600; line-height: 1.35; margin: 0 0 0.2rem; }
+  h3 { font-family: var(--display); font-size: 1.25rem; font-weight: 600; line-height: 1.35; margin: 0 0 0.2rem; }
   .prose { max-width: 42rem; }
   .prose p { margin: 0 0 0.9rem; }
   .group { font-family: var(--sans); font-size: 0.85rem; color: var(--muted); margin: 1.8rem 0 0.8rem; }
@@ -204,16 +207,29 @@
   svg .n { fill: var(--muted); fill-opacity: 0.6; }
 
   /* publications with thumbnails */
-  .pubs { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.6rem; }
-  .pub { display: grid; grid-template-columns: 10rem minmax(0, 1fr); gap: 1.4rem; align-items: start; }
-  .thumb { background: var(--box); border-radius: 8px; aspect-ratio: 16 / 10; max-width: 100%; overflow: hidden; }
+  .pubs { list-style: none; margin: 0; padding: 0; display: grid; gap: 2.1rem; }
+  .pub { display: grid; grid-template-columns: 11.5rem minmax(0, 1fr); gap: 1.5rem; align-items: start; }
+  .thumb { display: block; background: var(--box); border: 1px solid var(--rule); border-radius: 8px; aspect-ratio: 8 / 5; max-width: 100%; overflow: hidden; transition: border-color 0.15s; }
+  .thumb:hover { border-color: var(--rule-strong); }
   .thumb svg { display: block; width: 100%; height: 100%; }
-  .pub-body { min-width: 0; }
-  .pub .t { display: block; font-weight: 600; line-height: 1.4; }
-  .pub .a { display: block; }
-  .pub .v { display: block; color: var(--muted); }
-  .pub .note { font-family: var(--sans); font-size: 0.85rem; color: var(--muted); line-height: 1.5; margin: 0.35rem 0 0; }
-  .pub .pl { display: flex; gap: 1rem; flex-wrap: wrap; font-family: var(--sans); font-size: 0.85rem; margin-top: 0.3rem; }
+  .pub-body { min-width: 0; line-height: 1.5; }
+  .pub .t { display: block; font-family: var(--display); font-weight: 600; font-size: 1.06rem; line-height: 1.4; margin-bottom: 0.3rem; }
+  .pub .a { display: block; font-size: 0.97rem; }
+  .pub .v { display: block; font-size: 0.97rem; color: var(--muted); }
+  .pub .note { font-family: var(--sans); font-size: 0.85rem; color: var(--muted); line-height: 1.55; margin: 0.55rem 0 0; max-width: 44rem; }
+  .actions { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.7rem; }
+  .btn {
+    display: inline-flex; align-items: center;
+    font-family: var(--sans); font-size: 0.8rem; line-height: 1;
+    padding: 0.42rem 0.75rem;
+    border: 1px solid var(--rule-strong); border-radius: 999px;
+    color: var(--ink); background: var(--paper);
+    text-decoration: none; cursor: pointer;
+  }
+  .btn:hover { border-color: var(--accent); color: var(--accent); }
+  .cite-toggle[aria-expanded="true"] { border-color: var(--accent); color: var(--accent); }
+  .bib { margin-top: 0.7rem; background: var(--box); border: 1px solid var(--rule); border-radius: 8px; padding: 0.8rem; max-width: 46rem; }
+  .bib pre { margin: 0 0 0.7rem; overflow-x: auto; font-family: ui-monospace, "Cascadia Mono", Consolas, Menlo, monospace; font-size: 0.78rem; line-height: 1.55; color: var(--ink); }
 
   /* thumbnail drawing tokens */
   .th-line { fill: none; stroke: var(--muted); stroke-width: 1.2; }
@@ -222,8 +238,8 @@
   .th-soft { fill: var(--accent-soft); }
   .th-mut { fill: var(--rule-strong); }
   .th-paper { fill: var(--paper); stroke: var(--rule-strong); stroke-width: 1; }
-  .th-text { font-family: var(--sans); font-size: 9px; fill: var(--muted); }
-  .th-text-acc { font-family: var(--sans); font-size: 9px; fill: var(--accent); font-weight: 600; }
+  .th-text { font-family: var(--sans); font-size: 10px; fill: var(--muted); }
+  .th-text-acc { font-family: var(--sans); font-size: 10px; fill: var(--accent); font-weight: 600; }
   .r1 { fill: var(--accent); fill-opacity: 0.16; }
   .r2 { fill: var(--accent); fill-opacity: 0.08; }
   .r3 { fill: var(--accent); fill-opacity: 0.26; }
@@ -247,7 +263,8 @@
     .emblem { max-width: 17rem; }
     nav.sections .wrap { flex-wrap: nowrap; overflow-x: auto; white-space: nowrap; scrollbar-width: none; }
     h1 { font-size: 2.15rem; }
-    .pub { grid-template-columns: 6.5rem minmax(0, 1fr); gap: 1rem; }
+    .pub { grid-template-columns: minmax(0, 1fr); gap: 0.8rem; }
+    .thumb { max-width: 15rem; }
     .dated li { grid-template-columns: 1fr; gap: 0; padding: 0.45rem 0; }
     .honours li { flex-direction: column; gap: 0; padding: 0.35rem 0; }
     .honours .yr { padding-top: 0; }
@@ -395,32 +412,51 @@
     <div class="group">Journal article</div>
     <ul class="pubs">
       <li class="pub">
-        <div class="thumb" aria-hidden="true">
-          <svg viewBox="0 0 160 100">
+        <a class="thumb" href="https://doi.org/10.3390/bios16070391" aria-label="Open the Biosensors article">
+          <svg viewBox="0 0 200 125" aria-hidden="true">
             <defs>
               <clipPath id="sole-clip"><path d="M18,52 C18,40 26,32 40,32 C54,32 62,36 74,36 C90,36 100,24 122,24 C140,24 148,36 148,50 C148,66 138,76 120,76 C100,76 88,66 72,66 C60,66 54,72 40,72 C26,72 18,64 18,52 Z"/></clipPath>
             </defs>
-            <g clip-path="url(#sole-clip)">
-              <rect class="r1" x="0" y="0" width="58" height="100"/>
-              <rect class="r2" x="58" y="0" width="40" height="100"/>
-              <rect class="r3" x="98" y="0" width="62" height="100"/>
+            <g transform="translate(-3.75,-2) scale(1.25)">
+              <g clip-path="url(#sole-clip)">
+                <rect class="r1" x="0" y="0" width="58" height="100"/>
+                <rect class="r2" x="58" y="0" width="40" height="100"/>
+                <rect class="r3" x="98" y="0" width="62" height="100"/>
+              </g>
+              <path class="th-line" d="M18,52 C18,40 26,32 40,32 C54,32 62,36 74,36 C90,36 100,24 122,24 C140,24 148,36 148,50 C148,66 138,76 120,76 C100,76 88,66 72,66 C60,66 54,72 40,72 C26,72 18,64 18,52 Z"/>
+              <g class="th-acc">
+                <circle cx="31" cy="46" r="2.2"/><circle cx="31" cy="58" r="2.2"/><circle cx="44" cy="44" r="2.2"/><circle cx="44" cy="60" r="2.2"/>
+                <circle cx="72" cy="51" r="2.2"/><circle cx="86" cy="49" r="2.2"/>
+                <circle cx="110" cy="38" r="2.2"/><circle cx="111" cy="52" r="2.2"/><circle cx="112" cy="65" r="2.2"/>
+                <circle cx="126" cy="34" r="2.2"/><circle cx="128" cy="49" r="2.2"/><circle cx="129" cy="63" r="2.2"/>
+                <circle cx="140" cy="43" r="2.2"/><circle cx="140" cy="57" r="2.2"/>
+              </g>
             </g>
-            <path class="th-line" d="M18,52 C18,40 26,32 40,32 C54,32 62,36 74,36 C90,36 100,24 122,24 C140,24 148,36 148,50 C148,66 138,76 120,76 C100,76 88,66 72,66 C60,66 54,72 40,72 C26,72 18,64 18,52 Z"/>
-            <g class="th-acc">
-              <circle cx="31" cy="46" r="2.4"/><circle cx="31" cy="58" r="2.4"/><circle cx="44" cy="44" r="2.4"/><circle cx="44" cy="60" r="2.4"/>
-              <circle cx="72" cy="51" r="2.4"/><circle cx="86" cy="49" r="2.4"/>
-              <circle cx="110" cy="38" r="2.4"/><circle cx="111" cy="52" r="2.4"/><circle cx="112" cy="65" r="2.4"/>
-              <circle cx="126" cy="34" r="2.4"/><circle cx="128" cy="49" r="2.4"/><circle cx="129" cy="63" r="2.4"/>
-              <circle cx="140" cy="43" r="2.4"/><circle cx="140" cy="57" r="2.4"/>
-            </g>
+            <text class="th-text" x="100" y="114" text-anchor="middle">plantar pressure insole</text>
           </svg>
-        </div>
+        </a>
         <div class="pub-body">
           <span class="t">Region-Specific Information-Theoretic Feature Representation of Wearable Plantar Insole Signals for Parkinson's Disease Gait Assessment</span>
           <span class="a">Hao Li, Xinyu Zhang, <b>Qikai Wang</b>, Jun Ma</span>
-          <span class="v"><i>Biosensors</i>, 16(7), 391, 2026</span>
-          <div class="pl"><a href="https://doi.org/10.3390/bios16070391">DOI</a></div>
+          <span class="v"><i>Biosensors</i>, vol. 16, no. 7, art. 391, July 2026</span>
           <p class="note">My part: the feature-extraction and classification code, an evaluation framework with eight classical classifiers and six deep-learning baselines, and the validation (subject-grouped cross-validation, leave-one-subject-out testing, ablations, Mann–Whitney U tests with FDR correction).</p>
+          <div class="actions">
+            <a class="btn" href="https://doi.org/10.3390/bios16070391">DOI</a>
+            <button class="btn cite-toggle" type="button" aria-expanded="false">Cite</button>
+          </div>
+          <div class="bib" hidden>
+<pre>@article{li2026regionspecific,
+  title   = {Region-Specific Information-Theoretic Feature Representation of Wearable Plantar Insole Signals for Parkinson's Disease Gait Assessment},
+  author  = {Li, Hao and Zhang, Xinyu and Wang, Qikai and Ma, Jun},
+  journal = {Biosensors},
+  volume  = {16},
+  number  = {7},
+  pages   = {391},
+  year    = {2026},
+  doi     = {10.3390/bios16070391}
+}</pre>
+            <button class="btn copy" type="button">Copy BibTeX</button>
+          </div>
         </div>
       </li>
     </ul>
@@ -428,79 +464,133 @@
     <div class="group">Conference papers</div>
     <ul class="pubs">
       <li class="pub">
-        <div class="thumb" aria-hidden="true">
-          <svg viewBox="0 0 160 100">
-            <rect class="th-paper" x="6" y="34" width="18" height="32" rx="3"/>
-            <path class="th-line" d="M24 50 H32"/>
-            <rect class="th-soft" x="32" y="36" width="40" height="28" rx="4"/>
-            <text class="th-text-acc" x="52" y="53" text-anchor="middle">shared</text>
-            <path class="th-line" d="M72 50 C79 50 79 22 86 22 M72 50 H86 M72 50 C79 50 79 78 86 78"/>
-            <rect class="th-acc" x="86" y="19" width="16" height="6" rx="1.5"/>
-            <rect class="th-acc" x="86" y="45" width="16" height="10" rx="1.5"/>
-            <rect class="th-acc" x="86" y="69" width="16" height="18" rx="1.5"/>
-            <text class="th-text" x="106" y="25">K=4</text>
-            <text class="th-text" x="106" y="53">K=8</text>
-            <text class="th-text" x="106" y="81">K=16</text>
-            <path class="th-line" d="M128 22 C138 22 136 50 142 50 M128 50 H142 M128 78 C138 78 136 50 142 50"/>
-            <rect class="th-paper" x="142" y="38" width="12" height="24" rx="2"/>
+        <a class="thumb" href="https://libeldoc.bsuir.by/handle/123456789/63776" aria-label="Open the paper in the BSUIR repository">
+          <svg viewBox="0 0 200 125" aria-hidden="true">
+            <rect class="th-paper" x="8" y="44" width="22" height="36" rx="3"/>
+            <path class="th-line" d="M30 62 H40"/>
+            <rect class="th-soft" x="40" y="46" width="46" height="32" rx="4"/>
+            <text class="th-text-acc" x="63" y="65.5" text-anchor="middle">shared</text>
+            <path class="th-line" d="M86 62 C95 62 95 28 104 28 M86 62 H104 M86 62 C95 62 95 96 104 96"/>
+            <rect class="th-acc" x="104" y="25" width="18" height="6" rx="1.5"/>
+            <rect class="th-acc" x="104" y="56" width="18" height="12" rx="1.5"/>
+            <rect class="th-acc" x="104" y="84" width="18" height="24" rx="1.5"/>
+            <text class="th-text" x="104" y="20">K = 4</text>
+            <text class="th-text" x="104" y="51">K = 8</text>
+            <text class="th-text" x="104" y="79">K = 16</text>
+            <path class="th-line" d="M122 28 C150 28 146 62 170 62 M122 62 H170 M122 96 C150 96 146 62 170 62"/>
+            <rect class="th-paper" x="170" y="44" width="22" height="36" rx="3"/>
+            <text class="th-text" x="100" y="121" text-anchor="middle">one supernet, three rates</text>
           </svg>
-        </div>
+        </a>
         <div class="pub-body">
           <span class="t">Semantic Communication System for Vehicle Detection Based on CNN Encoder and Supernet Architecture</span>
           <span class="a"><b>Qikai Wang</b></span>
           <span class="v"><i>Information Security</i>: Proceedings of the 62nd Scientific Conference of Postgraduates, Master's Students and Students of BSUIR, Minsk, April 2026, pp. 202–203</span>
-          <div class="pl"><a href="https://libeldoc.bsuir.by/handle/123456789/63776">Repository</a></div>
-          <p class="note">A CNN codec at three compression ratios, and a supernet that serves all three with shared weights, trained with the sandwich rule and evaluated with a frozen YOLOv12 detector over AWGN.</p>
+          <p class="note">A CNN codec at three compression ratios, and a supernet that serves all three with shared weights, trained with the sandwich rule and evaluated with a frozen YOLOv12 detector over AWGN. Presented at the conference.</p>
+          <div class="actions">
+            <a class="btn" href="https://libeldoc.bsuir.by/handle/123456789/63776">Repository</a>
+            <button class="btn cite-toggle" type="button" aria-expanded="false">Cite</button>
+          </div>
+          <div class="bib" hidden>
+<pre>@inproceedings{wang2026semcom_bsuir,
+  title     = {Semantic Communication System for Vehicle Detection Based on CNN Encoder and Supernet Architecture},
+  author    = {Wang, Qikai},
+  booktitle = {Information Security: Proceedings of the 62nd Scientific Conference of Postgraduates, Master's Students and Students of BSUIR},
+  pages     = {202--203},
+  year      = {2026},
+  address   = {Minsk, Belarus},
+  publisher = {BSUIR},
+  url       = {https://libeldoc.bsuir.by/handle/123456789/63776}
+}</pre>
+            <button class="btn copy" type="button">Copy BibTeX</button>
+          </div>
         </div>
       </li>
       <li class="pub">
-        <div class="thumb" aria-hidden="true">
-          <svg viewBox="0 0 160 100">
-            <rect class="th-paper" x="6" y="30" width="30" height="40" rx="3"/>
-            <rect class="th-mut" x="12" y="38" width="9" height="6" rx="1"/>
-            <rect class="th-mut" x="22" y="56" width="9" height="6" rx="1"/>
-            <path class="th-soft" d="M42 30 L62 42 L62 58 L42 70 Z"/>
-            <path class="th-acc-line" d="M65 50 L68 44 L71 55 L74 46 L77 57 L80 43 L83 54 L86 47 L89 56 L92 50"/>
-            <path class="th-soft" d="M96 42 L116 30 L116 70 L96 58 Z"/>
-            <rect class="th-paper" x="122" y="30" width="30" height="40" rx="3"/>
-            <rect class="th-mut" x="128" y="38" width="9" height="6" rx="1"/>
-            <rect class="th-mut" x="138" y="56" width="9" height="6" rx="1"/>
-            <rect class="th-acc-line" x="126" y="36" width="13" height="10" rx="1"/>
-            <rect class="th-acc-line" x="136" y="54" width="13" height="10" rx="1"/>
+        <a class="thumb" href="https://libeldoc.bsuir.by/handle/123456789/65614" aria-label="Open the paper in the BSUIR repository">
+          <svg viewBox="0 0 200 125" aria-hidden="true">
+            <rect class="th-paper" x="8" y="36" width="36" height="52" rx="3"/>
+            <rect class="th-mut" x="15" y="46" width="11" height="7" rx="1"/>
+            <rect class="th-mut" x="27" y="68" width="11" height="7" rx="1"/>
+            <path class="th-soft" d="M52 36 L76 50 L76 74 L52 88 Z"/>
+            <path class="th-acc-line" d="M80 62 L83 55 L87 69 L91 57 L95 70 L99 54 L103 68 L107 58 L111 69 L115 56 L119 62"/>
+            <text class="th-text" x="100" y="90" text-anchor="middle">AWGN</text>
+            <path class="th-soft" d="M124 50 L148 36 L148 88 L124 74 Z"/>
+            <rect class="th-paper" x="156" y="36" width="36" height="52" rx="3"/>
+            <rect class="th-mut" x="163" y="46" width="11" height="7" rx="1"/>
+            <rect class="th-mut" x="175" y="68" width="11" height="7" rx="1"/>
+            <rect class="th-acc-line" x="160" y="43" width="17" height="13" rx="1"/>
+            <rect class="th-acc-line" x="172" y="65" width="17" height="13" rx="1"/>
+            <text class="th-text" x="100" y="117" text-anchor="middle">encode, send, decode, detect</text>
           </svg>
-        </div>
+        </a>
         <div class="pub-body">
           <span class="t">Semantic Communication System for Vehicle Detection</span>
           <span class="a"><b>Qikai Wang</b></span>
           <span class="v"><i>Technologies for Information Transmission and Processing</i>: Proceedings of the International Scientific and Technical Seminar, Minsk, April 2026, pp. 165–167</span>
-          <div class="pl"><a href="https://libeldoc.bsuir.by/handle/123456789/65614">Repository</a></div>
-          <p class="note">The same system for the TPOI seminar: compared with sending noisy pixels, the semantic codec keeps detection working at low SNR, and the supernet matches separately trained models.</p>
+          <p class="note">The same system for the TPOI seminar: compared with sending noisy pixels, the semantic codec keeps detection working at low SNR, and the supernet performs on par with separately trained models.</p>
+          <div class="actions">
+            <a class="btn" href="https://libeldoc.bsuir.by/handle/123456789/65614">Repository</a>
+            <button class="btn cite-toggle" type="button" aria-expanded="false">Cite</button>
+          </div>
+          <div class="bib" hidden>
+<pre>@inproceedings{wang2026semcom_tpoi,
+  title     = {Semantic Communication System for Vehicle Detection},
+  author    = {Wang, Qikai},
+  booktitle = {Technologies for Information Transmission and Processing: Proceedings of the International Scientific and Technical Seminar},
+  pages     = {165--167},
+  year      = {2026},
+  address   = {Minsk, Belarus},
+  publisher = {BSUIR},
+  url       = {https://libeldoc.bsuir.by/handle/123456789/65614}
+}</pre>
+            <button class="btn copy" type="button">Copy BibTeX</button>
+          </div>
         </div>
       </li>
       <li class="pub">
-        <div class="thumb" aria-hidden="true">
-          <svg viewBox="0 0 160 100">
-            <path class="th-line" d="M14 82 H150"/>
-            <rect class="th-mut" x="22" y="26.5" width="22" height="55.5" rx="1.5"/>
-            <rect class="th-mut" x="54" y="30.3" width="22" height="51.7" rx="1.5"/>
-            <rect class="th-mut" x="86" y="26.4" width="22" height="55.6" rx="1.5"/>
-            <rect class="th-acc" x="118" y="23.9" width="22" height="58.1" rx="1.5"/>
-            <text class="th-text" x="33" y="22" text-anchor="middle">.648</text>
-            <text class="th-text" x="65" y="26" text-anchor="middle">.603</text>
-            <text class="th-text" x="97" y="22" text-anchor="middle">.649</text>
-            <text class="th-text-acc" x="129" y="19" text-anchor="middle">.678</text>
-            <text class="th-text" x="33" y="94" text-anchor="middle">v9</text>
-            <text class="th-text" x="65" y="94" text-anchor="middle">v10</text>
-            <text class="th-text" x="97" y="94" text-anchor="middle">v11</text>
-            <text class="th-text-acc" x="129" y="94" text-anchor="middle">v12</text>
+        <a class="thumb" href="https://rep.bntu.by/handle/data/163061" aria-label="Open the paper in the BNTU repository">
+          <svg viewBox="0 0 200 125" aria-hidden="true">
+            <text class="th-text" x="10" y="14">YOLO mAP@0.5, test split</text>
+            <path class="th-line" d="M16 100 H192"/>
+            <rect class="th-mut" x="26" y="35.2" width="30" height="64.8" rx="1.5"/>
+            <rect class="th-mut" x="66" y="39.7" width="30" height="60.3" rx="1.5"/>
+            <rect class="th-mut" x="106" y="35.1" width="30" height="64.9" rx="1.5"/>
+            <rect class="th-acc" x="146" y="32.2" width="30" height="67.8" rx="1.5"/>
+            <text class="th-text" x="41" y="31" text-anchor="middle">0.648</text>
+            <text class="th-text" x="81" y="35.5" text-anchor="middle">0.603</text>
+            <text class="th-text" x="121" y="31" text-anchor="middle">0.649</text>
+            <text class="th-text-acc" x="161" y="28" text-anchor="middle">0.678</text>
+            <text class="th-text" x="41" y="114" text-anchor="middle">v9</text>
+            <text class="th-text" x="81" y="114" text-anchor="middle">v10</text>
+            <text class="th-text" x="121" y="114" text-anchor="middle">v11</text>
+            <text class="th-text-acc" x="161" y="114" text-anchor="middle">v12</text>
           </svg>
-        </div>
+        </a>
         <div class="pub-body">
           <span class="t">Comparative Analysis of YOLOv9–YOLOv12 Object Detection Models on a Custom Non-Open Dataset</span>
           <span class="a"><b>Qikai Wang</b>, Bin Zhang, Can Wang, Chi Zhang</span>
-          <span class="v"><i>New Horizons – 2025</i>: Proceedings of the XII Belarusian-Chinese Youth Innovation Forum, Minsk, November 2025, Vol. 1, pp. 102–103</span>
-          <div class="pl"><a href="https://rep.bntu.by/handle/data/163061">Repository</a></div>
-          <p class="note">Four YOLO versions trained for 300 epochs on an 11-class aerial vehicle dataset; YOLOv12 reached the highest mAP@0.5. My part: the YOLOv12 experiments, aggregating and analysing the team's results, writing the paper and presenting it in English.</p>
+          <span class="v"><i>New Horizons – 2025</i>: Proceedings of the XII Belarusian-Chinese Youth Innovation Forum, Minsk, November 2025, vol. 1, pp. 102–103</span>
+          <p class="note">Four YOLO versions trained for 300 epochs on an 11-class aerial vehicle dataset; YOLOv12 reached the highest mAP@0.5 (0.678). My part: the YOLOv12 experiments, aggregating and analysing the team's results, writing the paper and presenting it in English.</p>
+          <div class="actions">
+            <a class="btn" href="https://rep.bntu.by/handle/data/163061">Repository</a>
+            <button class="btn cite-toggle" type="button" aria-expanded="false">Cite</button>
+          </div>
+          <div class="bib" hidden>
+<pre>@inproceedings{wang2025yolo,
+  title     = {Comparative Analysis of YOLOv9--YOLOv12 Object Detection Models on a Custom Non-Open Dataset},
+  author    = {Wang, Qikai and Zhang, Bin and Wang, Can and Zhang, Chi},
+  booktitle = {New Horizons -- 2025: Proceedings of the XII Belarusian-Chinese Youth Innovation Forum},
+  volume    = {1},
+  pages     = {102--103},
+  year      = {2025},
+  address   = {Minsk, Belarus},
+  publisher = {BNTU},
+  isbn      = {978-985-31-0250-5},
+  url       = {https://rep.bntu.by/handle/data/163061}
+}</pre>
+            <button class="btn copy" type="button">Copy BibTeX</button>
+          </div>
         </div>
       </li>
     </ul>
@@ -633,6 +723,34 @@
       if (k < 1) requestAnimationFrame(step); else animating = false;
     }
     requestAnimationFrame(step);
+  })();
+</script>
+<script>
+  // Citation panels and copy buttons
+  (function () {
+    document.querySelectorAll('.cite-toggle').forEach(function (b) {
+      var panel = b.parentElement.nextElementSibling;
+      b.addEventListener('click', function () {
+        var opening = panel.hidden;
+        panel.hidden = !opening;
+        b.setAttribute('aria-expanded', String(opening));
+        b.textContent = opening ? 'Hide citation' : 'Cite';
+      });
+    });
+    document.querySelectorAll('.copy').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var pre = b.parentElement.querySelector('pre');
+        function done(msg) { b.textContent = msg; setTimeout(function () { b.textContent = 'Copy BibTeX'; }, 1800); }
+        function selectIt() {
+          var r = document.createRange(); r.selectNodeContents(pre);
+          var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r);
+          done('Selected, press Ctrl+C');
+        }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(pre.textContent).then(function () { done('Copied'); }, selectIt);
+        } else { selectIt(); }
+      });
+    });
   })();
 </script>
 </body>
