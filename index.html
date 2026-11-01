@@ -5,32 +5,51 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Qikai Wang</title>
 <meta name="description" content="Qikai Wang, undergraduate researcher at BSUIR, Minsk. Semantic communication and deep joint source-channel coding for UAV-based vehicle detection.">
+<meta property="og:title" content="Qikai Wang">
+<meta property="og:description" content="Undergraduate researcher at BSUIR, Minsk. Semantic communication and deep joint source-channel coding for UAV-based vehicle detection.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://wangqikai741-ctrl.github.io/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231F55A5'/%3E%3Cg fill='%23fff'%3E%3Ccircle cx='9' cy='9' r='2.2'/%3E%3Ccircle cx='16' cy='9' r='2.2'/%3E%3Ccircle cx='23' cy='9' r='2.2'/%3E%3Ccircle cx='9' cy='16' r='2.2'/%3E%3Ccircle cx='16' cy='16' r='2.2'/%3E%3Ccircle cx='23' cy='16' r='2.2'/%3E%3Ccircle cx='9' cy='23' r='2.2'/%3E%3Ccircle cx='16' cy='23' r='2.2'/%3E%3Ccircle cx='23' cy='23' r='2.2'/%3E%3C/g%3E%3C/svg%3E">
 <style>
+  /* Layout: name and bio on the left, a live 16-QAM constellation as the page's emblem on the right;
+     below, one reading column where every paper carries its own small schematic.
+     System fonts only, so the page makes no requests to other sites. */
   :root {
     --paper: #FFFFFF;
-    --ink: #1C2230;
-    --muted: #5D6677;
-    --rule: #E3E6EC;
-    --rule-strong: #C9CFD9;
+    --ink: #172033;
+    --muted: #5B6577;
+    --rule: #E2E6ED;
+    --rule-strong: #C7CEDA;
     --accent: #1F55A5;
+    --accent-soft: #E9EFF8;
     --box: #F5F7FA;
-    --todo: #FFF1A8;
-    /* system fonts only: the page makes no requests to other sites */
     --serif: Charter, "Bitstream Charter", "Sitka Text", Cambria, Georgia, serif;
     --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color-scheme: light;
   }
   @media (prefers-color-scheme: dark) {
-    :root {
-      --paper: #14181F;
-      --ink: #E6E9EF;
-      --muted: #9AA3B2;
-      --rule: #29303B;
-      --rule-strong: #3B4452;
+    :root:not([data-theme="light"]) {
+      --paper: #10141B;
+      --ink: #E7EAF0;
+      --muted: #9AA4B4;
+      --rule: #262D38;
+      --rule-strong: #394252;
       --accent: #8DB4F2;
-      --box: #1A1F28;
-      --todo: #5A4B10;
+      --accent-soft: #1A2538;
+      --box: #161B24;
+      color-scheme: dark;
     }
+  }
+  :root[data-theme="dark"] {
+    --paper: #10141B;
+    --ink: #E7EAF0;
+    --muted: #9AA4B4;
+    --rule: #262D38;
+    --rule-strong: #394252;
+    --accent: #8DB4F2;
+    --accent-soft: #1A2538;
+    --box: #161B24;
+    color-scheme: dark;
   }
 
   * { box-sizing: border-box; }
@@ -44,29 +63,41 @@
     font-size: 1.0625rem;
     line-height: 1.65;
   }
-  main {
-    max-width: 46rem;
+  .wrap {
+    max-width: 60rem;
     margin: 0 auto;
-    padding: 3.5rem 1rem 2.5rem;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
   }
-
   a { color: var(--accent); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
   a:hover { text-decoration-thickness: 2px; }
-  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+  a:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+  h1, h2, h3, h4 { text-wrap: balance; }
+  .meta { font-family: var(--sans); font-size: 0.85rem; color: var(--muted); }
 
-  /* placeholders still to be filled in: remove the class once done */
-  .todo { background: var(--todo); outline: 1px dashed var(--muted); border-radius: 2px; padding: 0 0.2em; }
-
-  /* header */
-  header { max-width: 40rem; }
-  h1 {
-    font-size: 2.25rem;
-    font-weight: 600;
-    line-height: 1.15;
-    margin: 0 0 1rem;
-    letter-spacing: -0.01em;
+  /* ---------- header ---------- */
+  header.hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 15.5rem;
+    gap: 3rem;
+    align-items: center;
+    padding-block: 3.5rem 2rem;
   }
-  header p { margin: 0 0 0.9rem; }
+  .hero-text { min-width: 0; max-width: 40rem; }
+  h1 {
+    font-size: 2.75rem;
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    margin: 0;
+  }
+  .role {
+    font-family: var(--sans);
+    font-size: 0.95rem;
+    color: var(--muted);
+    margin: 0.5rem 0 1.25rem;
+  }
+  .hero-text p { margin: 0 0 0.9rem; }
   .interests { color: var(--muted); }
   .links {
     display: flex;
@@ -77,65 +108,89 @@
     font-size: 0.9rem;
   }
   .links .plain { color: var(--muted); }
+  .links .email { user-select: all; }
 
-  nav {
-    margin-top: 1.6rem;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.3rem 1.1rem;
+  /* constellation emblem */
+  .emblem { margin: 0; }
+  .emblem svg { display: block; width: 100%; height: auto; max-width: 100%; aspect-ratio: 1; }
+  .emblem .frame { fill: var(--box); }
+  .emblem .grid { stroke: var(--rule-strong); stroke-width: 0.8; stroke-dasharray: 2 3; fill: none; }
+  .emblem .axis { stroke: var(--rule-strong); stroke-width: 0.8; fill: none; }
+  .emblem .axl { font-family: var(--sans); font-size: 9px; fill: var(--muted); }
+  .emblem .pts-noise circle { fill: var(--muted); fill-opacity: 0.55; }
+  .emblem .pts-ideal circle { fill: var(--accent); }
+  .snr-row {
+    display: grid;
+    grid-template-columns: auto 1fr 3.4rem;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 0.7rem;
     font-family: var(--sans);
     font-size: 0.85rem;
+    color: var(--muted);
   }
-  nav a { color: var(--muted); text-decoration: none; }
-  nav a:hover { color: var(--accent); text-decoration: underline; }
+  .snr-row input { width: 100%; accent-color: var(--accent); margin: 0; }
+  .snr-row output { text-align: right; font-variant-numeric: tabular-nums; color: var(--ink); }
+  .emblem figcaption { font-family: var(--sans); font-size: 0.8rem; color: var(--muted); line-height: 1.45; margin-top: 0.4rem; }
+  .emblem figcaption .ser { display: block; margin-top: 0.15rem; font-variant-numeric: tabular-nums; }
 
-  /* sections */
-  section { margin-top: 2.75rem; scroll-margin-top: 1rem; }
+  /* section navigation */
+  nav.sections {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    background: var(--paper);
+    border-bottom: 1px solid var(--rule);
+  }
+  nav.sections .wrap {
+    display: flex;
+    gap: 0.2rem 1.4rem;
+    flex-wrap: wrap;
+    padding-block: 0.65rem;
+    font-family: var(--sans);
+    font-size: 0.875rem;
+  }
+  nav.sections a { color: var(--muted); text-decoration: none; }
+  nav.sections a:hover { color: var(--accent); }
+
+  /* ---------- sections ---------- */
+  main { padding-block: 0.5rem 1rem; }
+  section { margin-top: 3rem; scroll-margin-top: 3.5rem; }
   h2 {
+    position: relative;
     font-family: var(--sans);
     font-size: 1rem;
     font-weight: 600;
-    margin: 0 0 1rem;
-    padding-bottom: 0.4rem;
+    margin: 0 0 1.1rem;
+    padding-bottom: 0.45rem;
     border-bottom: 1px solid var(--rule);
   }
-  h3 {
-    font-size: 1.15rem;
-    font-weight: 600;
-    line-height: 1.35;
-    margin: 0 0 0.25rem;
+  h2::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    width: 2rem;
+    height: 2px;
+    background: var(--accent);
   }
-  h4 {
-    font-size: 1.02rem;
-    font-weight: 600;
-    line-height: 1.4;
-    margin: 0 0 0.15rem;
-  }
-  .meta { font-family: var(--sans); font-size: 0.85rem; color: var(--muted); }
-  .group { font-family: var(--sans); font-size: 0.85rem; color: var(--muted); margin: 1.6rem 0 0.6rem; }
+  h3 { font-size: 1.25rem; font-weight: 600; line-height: 1.35; margin: 0 0 0.2rem; }
+  .prose { max-width: 42rem; }
+  .prose p { margin: 0 0 0.9rem; }
+  .group { font-family: var(--sans); font-size: 0.85rem; color: var(--muted); margin: 1.8rem 0 0.8rem; }
   h2 + .group { margin-top: 0; }
 
   /* dated lists: news and talks */
-  .dated { list-style: none; margin: 0; padding: 0; }
-  .dated li {
-    display: grid;
-    grid-template-columns: 5.5rem 1fr;
-    gap: 1rem;
-    padding: 0.3rem 0;
-  }
-  .dated time { font-family: var(--sans); font-size: 0.85rem; color: var(--muted); padding-top: 0.2rem; }
+  .dated { list-style: none; margin: 0; padding: 0; max-width: 46rem; }
+  .dated li { display: grid; grid-template-columns: 5.5rem minmax(0, 1fr); gap: 1rem; padding: 0.3rem 0; }
+  .dated time { font-family: var(--sans); font-size: 0.85rem; color: var(--muted); padding-top: 0.2rem; font-variant-numeric: tabular-nums; }
   .dated .where { display: block; color: var(--muted); }
 
-  /* research */
-  figure { margin: 1.1rem 0 1.2rem; }
-  .diagram {
-    background: var(--box);
-    border-radius: 6px;
-    padding: 0.75rem;
-    overflow-x: auto;
-  }
+  /* research figure */
+  figure.system { margin: 1.1rem 0 1.3rem; }
+  .diagram { background: var(--box); border-radius: 8px; padding: 0.75rem; overflow-x: auto; }
   .diagram svg { display: block; width: 100%; min-width: 560px; height: auto; }
-  figcaption { font-family: var(--sans); font-size: 0.85rem; color: var(--muted); line-height: 1.5; margin-top: 0.6rem; }
+  figcaption.cap { font-family: var(--sans); font-size: 0.85rem; color: var(--muted); line-height: 1.5; margin-top: 0.6rem; max-width: 46rem; }
   svg .bx { fill: var(--paper); stroke: var(--rule-strong); stroke-width: 1; }
   svg .lbl { font-family: var(--sans); font-size: 12px; font-weight: 600; fill: var(--ink); }
   svg .sub { font-family: var(--sans); font-size: 11px; fill: var(--muted); }
@@ -146,49 +201,53 @@
   svg .head-m { fill: var(--muted); }
   svg .head-a { fill: var(--accent); }
   svg .c { fill: var(--accent); }
-  svg .n { fill: var(--muted); opacity: 0.6; }
+  svg .n { fill: var(--muted); fill-opacity: 0.6; }
 
-  .projects { list-style: none; margin: 0; padding: 0; }
-  .projects li { margin: 0 0 1.2rem; }
-  .projects p { margin: 0.3rem 0 0; }
+  /* publications with thumbnails */
+  .pubs { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.6rem; }
+  .pub { display: grid; grid-template-columns: 10rem minmax(0, 1fr); gap: 1.4rem; align-items: start; }
+  .thumb { background: var(--box); border-radius: 8px; aspect-ratio: 16 / 10; max-width: 100%; overflow: hidden; }
+  .thumb svg { display: block; width: 100%; height: 100%; }
+  .pub-body { min-width: 0; }
+  .pub .t { display: block; font-weight: 600; line-height: 1.4; }
+  .pub .a { display: block; }
+  .pub .v { display: block; color: var(--muted); }
+  .pub .note { font-family: var(--sans); font-size: 0.85rem; color: var(--muted); line-height: 1.5; margin: 0.35rem 0 0; }
+  .pub .pl { display: flex; gap: 1rem; flex-wrap: wrap; font-family: var(--sans); font-size: 0.85rem; margin-top: 0.3rem; }
 
-  /* publications */
-  .pubs { list-style: none; margin: 0; padding: 0; }
-  .pubs li { margin: 0 0 1.15rem; }
-  .pubs .t { font-weight: 600; }
-  .pubs .a, .pubs .v { display: block; }
-  .pubs .v { color: var(--muted); }
-  .pl { font-family: var(--sans); font-size: 0.85rem; margin-right: 0.6rem; }
+  /* thumbnail drawing tokens */
+  .th-line { fill: none; stroke: var(--muted); stroke-width: 1.2; }
+  .th-acc-line { fill: none; stroke: var(--accent); stroke-width: 1.4; }
+  .th-acc { fill: var(--accent); }
+  .th-soft { fill: var(--accent-soft); }
+  .th-mut { fill: var(--rule-strong); }
+  .th-paper { fill: var(--paper); stroke: var(--rule-strong); stroke-width: 1; }
+  .th-text { font-family: var(--sans); font-size: 9px; fill: var(--muted); }
+  .th-text-acc { font-family: var(--sans); font-size: 9px; fill: var(--accent); font-weight: 600; }
+  .r1 { fill: var(--accent); fill-opacity: 0.16; }
+  .r2 { fill: var(--accent); fill-opacity: 0.08; }
+  .r3 { fill: var(--accent); fill-opacity: 0.26; }
 
-  /* education */
-  .entries { list-style: none; margin: 0; padding: 0; }
-  .entries li { margin: 0 0 1rem; }
-  .entries .row { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+  /* education, teaching */
+  .entries { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.1rem; max-width: 46rem; }
+  .entries .row { display: flex; justify-content: space-between; gap: 0.25rem 1rem; flex-wrap: wrap; }
   .entries .row b { font-weight: 600; }
   .entries p { margin: 0.15rem 0 0; }
 
   /* honours */
-  .honours { list-style: none; margin: 0; padding: 0; }
-  .honours li {
-    display: flex;
-    justify-content: space-between;
-    gap: 1rem;
-    padding: 0.2rem 0;
-  }
-  .honours .yr { font-family: var(--sans); font-size: 0.85rem; color: var(--muted); white-space: nowrap; padding-top: 0.2rem; }
+  .honours { list-style: none; margin: 0; padding: 0; max-width: 46rem; }
+  .honours li { display: flex; justify-content: space-between; gap: 1rem; padding: 0.22rem 0; }
+  .honours .yr { font-family: var(--sans); font-size: 0.85rem; color: var(--muted); white-space: nowrap; padding-top: 0.2rem; font-variant-numeric: tabular-nums; }
 
-  footer {
-    margin-top: 3rem;
-    padding-top: 0.8rem;
-    border-top: 1px solid var(--rule);
-    font-family: var(--sans);
-    font-size: 0.8rem;
-    color: var(--muted);
-  }
+  footer { margin-top: 3.5rem; border-top: 1px solid var(--rule); }
+  footer .wrap { padding-block: 0.9rem 2rem; font-family: var(--sans); font-size: 0.8rem; color: var(--muted); }
 
-  @media (max-width: 600px) {
-    main { padding-top: 2rem; }
-    h1 { font-size: 1.9rem; }
+  @media (max-width: 760px) {
+    header.hero { grid-template-columns: 1fr; gap: 1.75rem; padding-block: 2.25rem 1.5rem; }
+    .emblem { max-width: 17rem; }
+    nav.sections .wrap { flex-wrap: nowrap; overflow-x: auto; white-space: nowrap; scrollbar-width: none; }
+    h1 { font-size: 2.15rem; }
+    .pub { grid-template-columns: 6.5rem minmax(0, 1fr); gap: 1rem; }
     .dated li { grid-template-columns: 1fr; gap: 0; padding: 0.45rem 0; }
     .honours li { flex-direction: column; gap: 0; padding: 0.35rem 0; }
     .honours .yr { padding-top: 0; }
@@ -196,29 +255,57 @@
 </style>
 </head>
 <body>
-<main>
 
-  <header>
-    <h1>Qikai Wang</h1>
-    <p>I am a final-year undergraduate at the Belarusian State University of Informatics and Radioelectronics (BSUIR) in Minsk, in a 2+2 joint programme with Luoyang Normal University (LYNU), China. My research is in semantic communication: sending what a downstream task needs from an image, rather than every pixel. I am currently building rate-adaptive deep joint source–channel coding for UAV-based vehicle detection, advised by Jun Ma at BSUIR.</p>
-    <p class="interests">Interests: semantic and task-oriented communication, deep joint source–channel coding (DJSCC), and communication-efficient vision for UAVs.</p>
-    <div class="links">
-      <span>wangqikai741 [at] gmail [dot] com</span>
-      <a href="https://orcid.org/0009-0004-8450-7876">ORCID</a>
-      <a href="https://scholar.google.com/citations?user=_-0z9hoAAAAJ">Google Scholar</a>
-      <a href="https://github.com/wangqikai741-ctrl">GitHub</a>
-      <span class="plain">CV available on request</span>
+<div class="wrap">
+  <header class="hero">
+    <div class="hero-text">
+      <h1>Qikai Wang</h1>
+      <p class="role">Final-year undergraduate, Belarusian State University of Informatics and Radioelectronics, Minsk</p>
+      <p>I study at BSUIR in a 2+2 joint programme with Luoyang Normal University (LYNU), China. I work on semantic communication and deep joint source–channel coding: learning to send images over noisy wireless links so that a detector at the receiver still finds what it needs. My current project is rate-adaptive transmission for UAV-based vehicle detection, advised by Jun Ma at BSUIR.</p>
+      <p class="interests">Interests: semantic and task-oriented communication, deep joint source–channel coding (DJSCC), and communication-efficient vision for UAVs.</p>
+      <div class="links">
+        <span class="email">wangqikai741 [at] gmail [dot] com</span>
+        <a href="https://orcid.org/0009-0004-8450-7876">ORCID</a>
+        <a href="https://scholar.google.com/citations?user=_-0z9hoAAAAJ">Google Scholar</a>
+        <a href="https://github.com/wangqikai741-ctrl">GitHub</a>
+        <span class="plain">CV available on request</span>
+      </div>
     </div>
-    <nav aria-label="Sections">
-      <a href="#news">News</a>
-      <a href="#research">Research</a>
-      <a href="#pubs">Publications</a>
-      <a href="#talks">Talks</a>
-      <a href="#teaching">Teaching</a>
-      <a href="#edu">Education</a>
-      <a href="#honours">Honours</a>
-    </nav>
+
+    <figure class="emblem">
+      <svg id="constellation" viewBox="0 0 200 200" role="img" aria-labelledby="const-title">
+        <title id="const-title">16-QAM constellation: ideal symbol positions and received symbols after an AWGN channel</title>
+        <rect class="frame" x="0" y="0" width="200" height="200" rx="10"/>
+        <path class="grid" d="M60 6 V194 M140 6 V194 M6 60 H194 M6 140 H194"/>
+        <path class="axis" d="M100 6 V194 M6 100 H194"/>
+        <text class="axl" x="188" y="95" text-anchor="end">I</text>
+        <text class="axl" x="105" y="16">Q</text>
+        <g class="pts-noise"></g>
+        <g class="pts-ideal"></g>
+      </svg>
+      <div class="snr-row">
+        <label for="snr">SNR</label>
+        <input id="snr" type="range" min="0" max="30" step="1" value="20">
+        <output id="snr-value" for="snr">20 dB</output>
+      </div>
+      <figcaption>Received 16-QAM symbols. Move the slider to change the channel SNR. <span class="ser" id="ser"></span></figcaption>
+    </figure>
   </header>
+</div>
+
+<nav class="sections" aria-label="Sections">
+  <div class="wrap">
+    <a href="#news">News</a>
+    <a href="#research">Research</a>
+    <a href="#pubs">Publications</a>
+    <a href="#talks">Talks</a>
+    <a href="#teaching">Teaching</a>
+    <a href="#edu">Education</a>
+    <a href="#honours">Honours</a>
+  </div>
+</nav>
+
+<main class="wrap">
 
   <section id="news" aria-labelledby="news-h">
     <h2 id="news-h">News</h2>
@@ -237,11 +324,11 @@
     <h3>Rate-adaptive semantic communication for UAV vehicle detection</h3>
     <div class="meta">Undergraduate research, March 2026 – present</div>
 
-    <figure>
+    <figure class="system">
       <div class="diagram">
         <svg viewBox="0 0 680 206" role="img" aria-labelledby="figtitle figdesc">
           <title id="figtitle">System overview</title>
-          <desc id="figdesc">The UAV encodes a camera frame with a slimmable encoder at a bandwidth ratio chosen by a gating network. The signal crosses a noisy AWGN channel. At the ground station a decoder reconstructs the input for a frozen YOLOv12 detector, while a blind SNR estimator sends its estimate back to the gating network in a few bits.</desc>
+          <desc id="figdesc">The UAV encodes a camera frame with a slimmable encoder at a bandwidth ratio chosen by a gating network. The signal crosses a noisy AWGN channel. At the ground station a decoder rebuilds the frame for a frozen YOLOv12 detector, while a blind SNR estimator sends its estimate back to the gating network in a few bits.</desc>
           <defs>
             <marker id="am" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="head-m" d="M0,1 L10,5 L0,9 z"/></marker>
             <marker id="aa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="head-a" d="M0,1 L10,5 L0,9 z"/></marker>
@@ -251,7 +338,6 @@
           <text class="grp" x="325" y="40" text-anchor="middle">AWGN channel</text>
           <text class="grp" x="420" y="32">Ground station (receiver)</text>
 
-          <!-- transmitter -->
           <rect class="bx" x="14" y="50" width="96" height="68" rx="6"/>
           <text class="lbl" x="62" y="81" text-anchor="middle">Camera frame</text>
           <text class="sub" x="62" y="97" text-anchor="middle">aerial image</text>
@@ -268,7 +354,6 @@
           <path class="ln" d="M62 118 V158 H122" marker-end="url(#am)"/>
           <path class="ln" d="M189 138 V120" marker-end="url(#am)"/>
 
-          <!-- channel -->
           <path class="ln" d="M254 84 H294" marker-end="url(#am)"/>
           <g>
             <circle class="n" cx="304.8" cy="65.8" r="1.6"/><circle class="n" cx="304.9" cy="63.7" r="1.6"/><circle class="n" cx="303.1" cy="63.9" r="1.6"/><circle class="c" cx="305.5" cy="64.5" r="2.4"/><circle class="n" cx="308.4" cy="78.6" r="1.6"/><circle class="n" cx="308.2" cy="78.1" r="1.6"/><circle class="n" cx="306.5" cy="78.0" r="1.6"/><circle class="c" cx="305.5" cy="77.5" r="2.4"/><circle class="n" cx="301.2" cy="92.7" r="1.6"/><circle class="n" cx="306.8" cy="91.8" r="1.6"/><circle class="n" cx="301.1" cy="86.0" r="1.6"/><circle class="c" cx="305.5" cy="90.5" r="2.4"/><circle class="n" cx="303.2" cy="102.3" r="1.6"/><circle class="n" cx="306.3" cy="103.4" r="1.6"/><circle class="n" cx="306.9" cy="101.8" r="1.6"/><circle class="c" cx="305.5" cy="103.5" r="2.4"/><circle class="n" cx="319.3" cy="65.5" r="1.6"/><circle class="n" cx="316.8" cy="69.0" r="1.6"/><circle class="n" cx="319.9" cy="67.6" r="1.6"/><circle class="c" cx="318.5" cy="64.5" r="2.4"/><circle class="n" cx="316.9" cy="75.6" r="1.6"/><circle class="n" cx="317.6" cy="77.2" r="1.6"/><circle class="n" cx="320.1" cy="78.1" r="1.6"/><circle class="c" cx="318.5" cy="77.5" r="2.4"/><circle class="n" cx="317.3" cy="88.0" r="1.6"/><circle class="n" cx="317.1" cy="93.7" r="1.6"/><circle class="n" cx="316.4" cy="91.1" r="1.6"/><circle class="c" cx="318.5" cy="90.5" r="2.4"/><circle class="n" cx="319.6" cy="99.6" r="1.6"/><circle class="n" cx="318.6" cy="106.9" r="1.6"/><circle class="n" cx="313.3" cy="102.7" r="1.6"/><circle class="c" cx="318.5" cy="103.5" r="2.4"/><circle class="n" cx="331.2" cy="62.4" r="1.6"/><circle class="n" cx="332.8" cy="64.3" r="1.6"/><circle class="n" cx="327.7" cy="66.7" r="1.6"/><circle class="c" cx="331.5" cy="64.5" r="2.4"/><circle class="n" cx="333.2" cy="80.0" r="1.6"/><circle class="n" cx="335.2" cy="78.4" r="1.6"/><circle class="n" cx="331.8" cy="74.1" r="1.6"/><circle class="c" cx="331.5" cy="77.5" r="2.4"/><circle class="n" cx="333.1" cy="88.9" r="1.6"/><circle class="n" cx="330.3" cy="87.2" r="1.6"/><circle class="n" cx="329.0" cy="89.1" r="1.6"/><circle class="c" cx="331.5" cy="90.5" r="2.4"/><circle class="n" cx="334.9" cy="98.2" r="1.6"/><circle class="n" cx="327.7" cy="104.1" r="1.6"/><circle class="n" cx="335.3" cy="105.0" r="1.6"/><circle class="c" cx="331.5" cy="103.5" r="2.4"/><circle class="n" cx="339.6" cy="58.0" r="1.6"/><circle class="n" cx="345.4" cy="62.6" r="1.6"/><circle class="n" cx="341.6" cy="67.0" r="1.6"/><circle class="c" cx="344.5" cy="64.5" r="2.4"/><circle class="n" cx="347.4" cy="77.9" r="1.6"/><circle class="n" cx="345.1" cy="78.6" r="1.6"/><circle class="n" cx="348.6" cy="79.1" r="1.6"/><circle class="c" cx="344.5" cy="77.5" r="2.4"/><circle class="n" cx="345.8" cy="91.9" r="1.6"/><circle class="n" cx="340.4" cy="93.8" r="1.6"/><circle class="n" cx="347.0" cy="91.9" r="1.6"/><circle class="c" cx="344.5" cy="90.5" r="2.4"/><circle class="n" cx="339.4" cy="101.9" r="1.6"/><circle class="n" cx="346.7" cy="98.8" r="1.6"/><circle class="n" cx="344.0" cy="106.2" r="1.6"/><circle class="c" cx="344.5" cy="103.5" r="2.4"/>
@@ -276,10 +361,9 @@
           <text class="sub" x="325" y="126" text-anchor="middle">received symbols</text>
           <path class="ln" d="M356 84 H418" marker-end="url(#am)"/>
 
-          <!-- receiver -->
           <rect class="bx" x="420" y="50" width="100" height="68" rx="6"/>
           <text class="lbl" x="470" y="81" text-anchor="middle">Decoder</text>
-          <text class="sub" x="470" y="97" text-anchor="middle">shared weights</text>
+          <text class="sub" x="470" y="97" text-anchor="middle">rebuilds frame</text>
 
           <rect class="bx" x="540" y="50" width="126" height="68" rx="6"/>
           <text class="lbl" x="603" y="81" text-anchor="middle">YOLOv12</text>
@@ -292,64 +376,132 @@
           <circle class="head-m" cx="396" cy="84" r="2.2"/>
           <path class="ln" d="M396 84 V158 H418" marker-end="url(#am)"/>
 
-          <!-- feedback -->
           <path class="fb" d="M490 178 V196 H189 V180" marker-end="url(#aa)"/>
           <text class="fbt" x="300" y="190" text-anchor="middle">SNR estimate, fed back in a few bits</text>
         </svg>
       </div>
-      <figcaption>System overview. The ground station estimates the SNR from the received symbols without pilots and feeds it back in a few bits; the gating network on the UAV then picks the bandwidth ratio from that estimate and the image content.</figcaption>
+      <figcaption class="cap">System overview. The ground station estimates the SNR from the received symbols without pilots and feeds it back in a few bits; the gating network on the UAV then picks the bandwidth ratio from that estimate and the image content.</figcaption>
     </figure>
 
-    <p>A detector that is accurate enough is usually too heavy to run on a small UAV, so frames have to be sent to a ground station over a noisy link. I designed a lightweight slimmable codec that serves five bandwidth ratios with a single set of weights (258K parameters), and a blind rate-adaptation loop that needs no pilot symbols. The detector at the ground station stays frozen, and the system is judged by detection accuracy (mAP) rather than image quality.</p>
-    <p>Early versions of the system, with a CNN encoder and a supernet covering three compression ratios, appeared in two sole-author papers in 2026 (see Publications).</p>
-
-    <div class="group">Other projects</div>
-    <ul class="projects">
-      <li>
-        <h4>Gait assessment for Parkinson's disease from wearable insole signals</h4>
-        <div class="meta">Collaborative project with Hao Li and Jun Ma</div>
-        <p>I implemented the feature-extraction and classification pipeline and a unified evaluation framework covering eight classical classifiers and six deep-learning baselines, and ran the validation: subject-grouped cross-validation, leave-one-subject-out testing and ablations, with Mann–Whitney U tests and FDR correction. Published in <i>Biosensors</i> (2026).</p>
-      </li>
-      <li>
-        <h4>Comparing YOLOv9–YOLOv12 for aerial vehicle detection</h4>
-        <div class="meta">Team project, September – November 2025</div>
-        <p>A four-person comparison of recent YOLO models on an 11-class private aerial vehicle dataset. I ran the YOLOv12 experiments, aggregated and analysed the team's results, wrote the paper and presented it in English at New Horizons 2025. This project raised the question behind my current research: the detector cannot easily run on the UAV itself.</p>
-      </li>
-    </ul>
+    <div class="prose">
+      <p>A detector that is accurate enough is usually too heavy to run on a small UAV, so frames have to be sent to a ground station over a noisy link. I designed a lightweight slimmable codec that serves five bandwidth ratios with a single set of weights (258K parameters), and a blind rate-adaptation loop that needs no pilot symbols. The detector at the ground station stays frozen, and the system is judged by detection accuracy (mAP) rather than image quality.</p>
+      <p>Early versions of the system, with a CNN encoder and a supernet covering three compression ratios, appeared in two sole-author papers in 2026 (see Publications).</p>
+    </div>
   </section>
 
   <section id="pubs" aria-labelledby="pubs-h">
     <h2 id="pubs-h">Publications</h2>
 
-    <div class="group">Journal articles</div>
+    <div class="group">Journal article</div>
     <ul class="pubs">
-      <li>
-        <span class="t">Region-Specific Information-Theoretic Feature Representation of Wearable Plantar Insole Signals for Parkinson's Disease Gait Assessment</span>
-        <span class="a">Hao Li, Xinyu Zhang, <b>Qikai Wang</b>, Jun Ma</span>
-        <span class="v"><i>Biosensors</i>, 16(7), 391, 2026.</span>
-        <a class="pl" href="https://doi.org/10.3390/bios16070391">DOI</a>
+      <li class="pub">
+        <div class="thumb" aria-hidden="true">
+          <svg viewBox="0 0 160 100">
+            <defs>
+              <clipPath id="sole-clip"><path d="M18,52 C18,40 26,32 40,32 C54,32 62,36 74,36 C90,36 100,24 122,24 C140,24 148,36 148,50 C148,66 138,76 120,76 C100,76 88,66 72,66 C60,66 54,72 40,72 C26,72 18,64 18,52 Z"/></clipPath>
+            </defs>
+            <g clip-path="url(#sole-clip)">
+              <rect class="r1" x="0" y="0" width="58" height="100"/>
+              <rect class="r2" x="58" y="0" width="40" height="100"/>
+              <rect class="r3" x="98" y="0" width="62" height="100"/>
+            </g>
+            <path class="th-line" d="M18,52 C18,40 26,32 40,32 C54,32 62,36 74,36 C90,36 100,24 122,24 C140,24 148,36 148,50 C148,66 138,76 120,76 C100,76 88,66 72,66 C60,66 54,72 40,72 C26,72 18,64 18,52 Z"/>
+            <g class="th-acc">
+              <circle cx="31" cy="46" r="2.4"/><circle cx="31" cy="58" r="2.4"/><circle cx="44" cy="44" r="2.4"/><circle cx="44" cy="60" r="2.4"/>
+              <circle cx="72" cy="51" r="2.4"/><circle cx="86" cy="49" r="2.4"/>
+              <circle cx="110" cy="38" r="2.4"/><circle cx="111" cy="52" r="2.4"/><circle cx="112" cy="65" r="2.4"/>
+              <circle cx="126" cy="34" r="2.4"/><circle cx="128" cy="49" r="2.4"/><circle cx="129" cy="63" r="2.4"/>
+              <circle cx="140" cy="43" r="2.4"/><circle cx="140" cy="57" r="2.4"/>
+            </g>
+          </svg>
+        </div>
+        <div class="pub-body">
+          <span class="t">Region-Specific Information-Theoretic Feature Representation of Wearable Plantar Insole Signals for Parkinson's Disease Gait Assessment</span>
+          <span class="a">Hao Li, Xinyu Zhang, <b>Qikai Wang</b>, Jun Ma</span>
+          <span class="v"><i>Biosensors</i>, 16(7), 391, 2026</span>
+          <div class="pl"><a href="https://doi.org/10.3390/bios16070391">DOI</a></div>
+          <p class="note">My part: the feature-extraction and classification code, an evaluation framework with eight classical classifiers and six deep-learning baselines, and the validation (subject-grouped cross-validation, leave-one-subject-out testing, ablations, Mann–Whitney U tests with FDR correction).</p>
+        </div>
       </li>
     </ul>
 
     <div class="group">Conference papers</div>
     <ul class="pubs">
-      <li>
-        <span class="t">Semantic Communication System for Vehicle Detection Based on CNN Encoder and Supernet Architecture</span>
-        <span class="a"><b>Qikai Wang</b></span>
-        <span class="v"><i>Information Security</i>: Proceedings of the 62nd Scientific Conference of Postgraduates, Master's Students and Students of BSUIR, Minsk, 13–17 April 2026, pp. 202–203.</span>
-        <a class="pl" href="https://libeldoc.bsuir.by/handle/123456789/63776">Repository</a>
+      <li class="pub">
+        <div class="thumb" aria-hidden="true">
+          <svg viewBox="0 0 160 100">
+            <rect class="th-paper" x="6" y="34" width="18" height="32" rx="3"/>
+            <path class="th-line" d="M24 50 H32"/>
+            <rect class="th-soft" x="32" y="36" width="40" height="28" rx="4"/>
+            <text class="th-text-acc" x="52" y="53" text-anchor="middle">shared</text>
+            <path class="th-line" d="M72 50 C79 50 79 22 86 22 M72 50 H86 M72 50 C79 50 79 78 86 78"/>
+            <rect class="th-acc" x="86" y="19" width="16" height="6" rx="1.5"/>
+            <rect class="th-acc" x="86" y="45" width="16" height="10" rx="1.5"/>
+            <rect class="th-acc" x="86" y="69" width="16" height="18" rx="1.5"/>
+            <text class="th-text" x="106" y="25">K=4</text>
+            <text class="th-text" x="106" y="53">K=8</text>
+            <text class="th-text" x="106" y="81">K=16</text>
+            <path class="th-line" d="M128 22 C138 22 136 50 142 50 M128 50 H142 M128 78 C138 78 136 50 142 50"/>
+            <rect class="th-paper" x="142" y="38" width="12" height="24" rx="2"/>
+          </svg>
+        </div>
+        <div class="pub-body">
+          <span class="t">Semantic Communication System for Vehicle Detection Based on CNN Encoder and Supernet Architecture</span>
+          <span class="a"><b>Qikai Wang</b></span>
+          <span class="v"><i>Information Security</i>: Proceedings of the 62nd Scientific Conference of Postgraduates, Master's Students and Students of BSUIR, Minsk, April 2026, pp. 202–203</span>
+          <div class="pl"><a href="https://libeldoc.bsuir.by/handle/123456789/63776">Repository</a></div>
+          <p class="note">A CNN codec at three compression ratios, and a supernet that serves all three with shared weights, trained with the sandwich rule and evaluated with a frozen YOLOv12 detector over AWGN.</p>
+        </div>
       </li>
-      <li>
-        <span class="t">Semantic Communication System for Vehicle Detection</span>
-        <span class="a"><b>Qikai Wang</b></span>
-        <span class="v"><i>Technologies for Information Transmission and Processing</i>: Proceedings of the International Scientific and Technical Seminar, Minsk, April 2026, pp. 165–167.</span>
-        <a class="pl" href="https://libeldoc.bsuir.by/handle/123456789/65614">Repository</a>
+      <li class="pub">
+        <div class="thumb" aria-hidden="true">
+          <svg viewBox="0 0 160 100">
+            <rect class="th-paper" x="6" y="30" width="30" height="40" rx="3"/>
+            <rect class="th-mut" x="12" y="38" width="9" height="6" rx="1"/>
+            <rect class="th-mut" x="22" y="56" width="9" height="6" rx="1"/>
+            <path class="th-soft" d="M42 30 L62 42 L62 58 L42 70 Z"/>
+            <path class="th-acc-line" d="M65 50 L68 44 L71 55 L74 46 L77 57 L80 43 L83 54 L86 47 L89 56 L92 50"/>
+            <path class="th-soft" d="M96 42 L116 30 L116 70 L96 58 Z"/>
+            <rect class="th-paper" x="122" y="30" width="30" height="40" rx="3"/>
+            <rect class="th-mut" x="128" y="38" width="9" height="6" rx="1"/>
+            <rect class="th-mut" x="138" y="56" width="9" height="6" rx="1"/>
+            <rect class="th-acc-line" x="126" y="36" width="13" height="10" rx="1"/>
+            <rect class="th-acc-line" x="136" y="54" width="13" height="10" rx="1"/>
+          </svg>
+        </div>
+        <div class="pub-body">
+          <span class="t">Semantic Communication System for Vehicle Detection</span>
+          <span class="a"><b>Qikai Wang</b></span>
+          <span class="v"><i>Technologies for Information Transmission and Processing</i>: Proceedings of the International Scientific and Technical Seminar, Minsk, April 2026, pp. 165–167</span>
+          <div class="pl"><a href="https://libeldoc.bsuir.by/handle/123456789/65614">Repository</a></div>
+          <p class="note">The same system for the TPOI seminar: compared with sending noisy pixels, the semantic codec keeps detection working at low SNR, and the supernet matches separately trained models.</p>
+        </div>
       </li>
-      <li>
-        <span class="t">Comparative Analysis of YOLOv9–YOLOv12 Object Detection Models on a Custom Non-Open Dataset</span>
-        <span class="a"><b>Qikai Wang</b>, Bin Zhang, Can Wang, Chi Zhang</span>
-        <span class="v"><i>New Horizons – 2025</i>: Proceedings of the XII Belarusian-Chinese Youth Innovation Forum, Minsk, 27–28 November 2025, Vol. 1, pp. 102–103.</span>
-        <a class="pl" href="https://rep.bntu.by/handle/data/163061">Repository</a>
+      <li class="pub">
+        <div class="thumb" aria-hidden="true">
+          <svg viewBox="0 0 160 100">
+            <path class="th-line" d="M14 82 H150"/>
+            <rect class="th-mut" x="22" y="26.5" width="22" height="55.5" rx="1.5"/>
+            <rect class="th-mut" x="54" y="30.3" width="22" height="51.7" rx="1.5"/>
+            <rect class="th-mut" x="86" y="26.4" width="22" height="55.6" rx="1.5"/>
+            <rect class="th-acc" x="118" y="23.9" width="22" height="58.1" rx="1.5"/>
+            <text class="th-text" x="33" y="22" text-anchor="middle">.648</text>
+            <text class="th-text" x="65" y="26" text-anchor="middle">.603</text>
+            <text class="th-text" x="97" y="22" text-anchor="middle">.649</text>
+            <text class="th-text-acc" x="129" y="19" text-anchor="middle">.678</text>
+            <text class="th-text" x="33" y="94" text-anchor="middle">v9</text>
+            <text class="th-text" x="65" y="94" text-anchor="middle">v10</text>
+            <text class="th-text" x="97" y="94" text-anchor="middle">v11</text>
+            <text class="th-text-acc" x="129" y="94" text-anchor="middle">v12</text>
+          </svg>
+        </div>
+        <div class="pub-body">
+          <span class="t">Comparative Analysis of YOLOv9–YOLOv12 Object Detection Models on a Custom Non-Open Dataset</span>
+          <span class="a"><b>Qikai Wang</b>, Bin Zhang, Can Wang, Chi Zhang</span>
+          <span class="v"><i>New Horizons – 2025</i>: Proceedings of the XII Belarusian-Chinese Youth Innovation Forum, Minsk, November 2025, Vol. 1, pp. 102–103</span>
+          <div class="pl"><a href="https://rep.bntu.by/handle/data/163061">Repository</a></div>
+          <p class="note">Four YOLO versions trained for 300 epochs on an 11-class aerial vehicle dataset; YOLOv12 reached the highest mAP@0.5. My part: the YOLOv12 experiments, aggregating and analysing the team's results, writing the paper and presenting it in English.</p>
+        </div>
       </li>
     </ul>
   </section>
@@ -413,8 +565,75 @@
     </ul>
   </section>
 
-  <footer>Last updated October 2026</footer>
-
 </main>
+
+<footer>
+  <div class="wrap">Last updated November 2026</div>
+</footer>
+
+<script>
+  // Live 16-QAM constellation: ideal points plus received symbols after AWGN at the chosen SNR (Es/N0).
+  (function () {
+    var svg = document.getElementById('constellation');
+    var slider = document.getElementById('snr');
+    var out = document.getElementById('snr-value');
+    var serEl = document.getElementById('ser');
+    if (!svg || !slider) return;
+    var NS = 'http://www.w3.org/2000/svg';
+    var levels = [-3, -1, 1, 3];       // 16-QAM amplitude levels, average symbol energy Es = 10
+    var C = 100, S = 20, PER = 14;     // centre, pixels per level unit, received samples per point
+    var gNoise = svg.querySelector('.pts-noise');
+    var gIdeal = svg.querySelector('.pts-ideal');
+    var seed = 20260415;
+    function rand() { seed = (seed * 1664525 + 1013904223) >>> 0; return seed / 4294967296; }
+    function gauss() { var u = 0; while (!u) u = rand(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * rand()); }
+    function decide(u) { return u < -2 ? -3 : u < 0 ? -1 : u < 2 ? 1 : 3; }
+    var pts = [];
+    levels.forEach(function (i) {
+      levels.forEach(function (q) {
+        for (var k = 0; k < PER; k++) {
+          var c = document.createElementNS(NS, 'circle');
+          c.setAttribute('r', '1.7');
+          gNoise.appendChild(c);
+          pts.push({ c: c, i: i, q: q, ni: gauss(), nq: gauss() });
+        }
+        var d = document.createElementNS(NS, 'circle');
+        d.setAttribute('cx', C + S * i);
+        d.setAttribute('cy', C - S * q);
+        d.setAttribute('r', '3.4');
+        gIdeal.appendChild(d);
+      });
+    });
+    function draw(snrDb) {
+      var sigma = Math.sqrt(10 / (2 * Math.pow(10, snrDb / 10)));   // per-dimension noise std, level units
+      var wrong = 0;
+      pts.forEach(function (p) {
+        var ui = p.i + sigma * p.ni, uq = p.q + sigma * p.nq;
+        if (decide(ui) !== p.i || decide(uq) !== p.q) wrong++;
+        p.c.setAttribute('cx', Math.min(196, Math.max(4, C + S * ui)).toFixed(1));
+        p.c.setAttribute('cy', Math.min(196, Math.max(4, C - S * uq)).toFixed(1));
+      });
+      out.textContent = Math.round(snrDb) + ' dB';
+      serEl.textContent = wrong + ' of ' + pts.length + ' symbols land in the wrong decision region.';
+    }
+    var animating = false;
+    slider.addEventListener('input', function () { animating = false; draw(+slider.value); });
+    var target = +slider.value;
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce || !window.requestAnimationFrame) { draw(target); return; }
+    draw(0);
+    animating = true;
+    var t0 = null, dur = 1800;
+    function step(t) {
+      if (!animating) return;
+      if (t0 === null) t0 = t;
+      var k = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - k, 3), v = target * e;
+      slider.value = Math.round(v);
+      draw(v);
+      if (k < 1) requestAnimationFrame(step); else animating = false;
+    }
+    requestAnimationFrame(step);
+  })();
+</script>
 </body>
 </html>
