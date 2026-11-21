@@ -11,18 +11,16 @@
 <meta property="og:url" content="https://wangqikai741-ctrl.github.io/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231F55A5'/%3E%3Cg fill='%23fff'%3E%3Ccircle cx='9' cy='9' r='2.2'/%3E%3Ccircle cx='16' cy='9' r='2.2'/%3E%3Ccircle cx='23' cy='9' r='2.2'/%3E%3Ccircle cx='9' cy='16' r='2.2'/%3E%3Ccircle cx='16' cy='16' r='2.2'/%3E%3Ccircle cx='23' cy='16' r='2.2'/%3E%3Ccircle cx='9' cy='23' r='2.2'/%3E%3Ccircle cx='16' cy='23' r='2.2'/%3E%3Ccircle cx='23' cy='23' r='2.2'/%3E%3C/g%3E%3C/svg%3E">
 <style>
-  /* Layout: name and bio on the left, a live 16-QAM constellation as the page's emblem on the right;
-     below, one reading column where every paper carries its own small schematic.
-     System fonts only, so the page makes no requests to other sites. */
+  /* The site uses system fonts and self-contained research figures. */
   :root {
-    --paper: #FFFFFF;
-    --ink: #172033;
-    --muted: #5B6577;
-    --rule: #E2E6ED;
-    --rule-strong: #C7CEDA;
-    --accent: #1F55A5;
-    --accent-soft: #E9EFF8;
-    --box: #F5F7FA;
+    --paper: #FBFAF7;
+    --ink: #1D2630;
+    --muted: #515D6A;
+    --rule: #DFE3E6;
+    --rule-strong: #BEC8D0;
+    --accent: #235785;
+    --accent-soft: #E7EEF5;
+    --box: #F0F3F5;
     --serif: Charter, "Bitstream Charter", "Sitka Text", Cambria, Georgia, serif;
     --display: Charter, "Bitstream Charter", "Sitka Heading", "Sitka Text", Cambria, Georgia, serif;
     --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -30,26 +28,26 @@
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
-      --paper: #10141B;
-      --ink: #E7EAF0;
-      --muted: #9AA4B4;
-      --rule: #262D38;
-      --rule-strong: #394252;
-      --accent: #8DB4F2;
-      --accent-soft: #1A2538;
-      --box: #161B24;
+      --paper: #111820;
+      --ink: #E9EDF2;
+      --muted: #A5B1BE;
+      --rule: #2D3946;
+      --rule-strong: #455565;
+      --accent: #A1C8EF;
+      --accent-soft: #223349;
+      --box: #19232E;
       color-scheme: dark;
     }
   }
   :root[data-theme="dark"] {
-    --paper: #10141B;
-    --ink: #E7EAF0;
-    --muted: #9AA4B4;
-    --rule: #262D38;
-    --rule-strong: #394252;
-    --accent: #8DB4F2;
-    --accent-soft: #1A2538;
-    --box: #161B24;
+    --paper: #111820;
+    --ink: #E9EDF2;
+    --muted: #A5B1BE;
+    --rule: #2D3946;
+    --rule-strong: #455565;
+    --accent: #A1C8EF;
+    --accent-soft: #223349;
+    --box: #19232E;
     color-scheme: dark;
   }
 
@@ -66,57 +64,75 @@
     line-height: 1.65;
   }
   .wrap {
-    max-width: 60rem;
+    max-width: 69rem;
     margin: 0 auto;
-    padding-left: max(16px, env(safe-area-inset-left, 0px));
-    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-left: max(clamp(1.25rem, 3vw, 2.25rem), env(safe-area-inset-left, 0px));
+    padding-right: max(clamp(1.25rem, 3vw, 2.25rem), env(safe-area-inset-right, 0px));
   }
   a { color: var(--accent); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
   a:hover { text-decoration-thickness: 2px; }
-  a:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+  a:focus-visible, button:focus-visible, input:focus-visible, .diagram:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
   h1, h2, h3, h4 { text-wrap: balance; }
   .meta { font-family: var(--sans); font-size: 0.85rem; color: var(--muted); }
 
-  /* ---------- header ---------- */
+  /* Profile and interactive channel demonstration */
   header.hero {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) 15.5rem;
-    gap: 3rem;
+    grid-template-columns: minmax(0, 1fr) minmax(17rem, 21rem);
+    gap: clamp(2.5rem, 7vw, 6rem);
     align-items: center;
-    padding-block: 3.5rem 2rem;
+    padding-block: clamp(3rem, 7vw, 6rem) clamp(2rem, 5vw, 4rem);
   }
   .hero-text { min-width: 0; max-width: 40rem; }
   h1 {
     font-family: var(--display);
-    font-size: 2.75rem;
+    font-size: clamp(3.35rem, 6.4vw, 5.3rem);
     font-weight: 600;
-    line-height: 1.1;
-    letter-spacing: -0.015em;
+    line-height: 0.98;
+    letter-spacing: -0.045em;
     margin: 0;
   }
   .role {
     font-family: var(--sans);
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     color: var(--muted);
-    margin: 0.5rem 0 1.25rem;
+    margin: 1rem 0 1.4rem;
   }
-  .hero-text p { margin: 0 0 0.9rem; }
-  .interests { color: var(--muted); }
+  .lead {
+    font-size: clamp(1.28rem, 2.2vw, 1.8rem);
+    line-height: 1.35;
+    letter-spacing: -0.014em;
+    margin: 0 0 0.9rem;
+    max-width: 34ch;
+    text-wrap: pretty;
+  }
+  .bio { color: var(--muted); font-size: 1.02rem; margin: 0; max-width: 55ch; }
   .links {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.35rem 1.25rem;
-    margin-top: 1.1rem;
+    gap: 0.6rem 1.15rem;
+    margin-top: 1.5rem;
     font-family: var(--sans);
-    font-size: 0.9rem;
+    font-size: 0.84rem;
   }
   .links .plain { color: var(--muted); }
-  .links .email { user-select: all; }
+  .links .email { flex-basis: 100%; user-select: all; }
 
-  /* constellation emblem */
-  .emblem { margin: 0; }
-  .emblem svg { display: block; width: 100%; height: auto; max-width: 100%; aspect-ratio: 1; }
-  .emblem .frame { fill: var(--box); }
+  .emblem {
+    display: grid;
+    gap: 0.8rem;
+    margin: 0;
+    padding: 1.1rem;
+    border: 1px solid var(--rule);
+    border-radius: 14px;
+    background: var(--box);
+  }
+  .demo-title {
+    margin: 0;
+    font: 600 0.88rem/1.4 var(--sans);
+  }
+  .emblem svg { display: block; width: 100%; height: auto; aspect-ratio: 1; max-width: 15rem; margin-inline: auto; }
+  .emblem .frame { fill: var(--paper); }
   .emblem .grid { stroke: var(--rule-strong); stroke-width: 0.8; stroke-dasharray: 2 3; fill: none; }
   .emblem .axis { stroke: var(--rule-strong); stroke-width: 0.8; fill: none; }
   .emblem .axl { font-family: var(--sans); font-size: 9px; fill: var(--muted); }
@@ -124,18 +140,22 @@
   .emblem .pts-ideal circle { fill: var(--accent); }
   .snr-row {
     display: grid;
-    grid-template-columns: auto 1fr 3.4rem;
+    grid-template-columns: auto minmax(0, 1fr) 3.4rem;
     align-items: center;
     gap: 0.6rem;
-    margin-top: 0.7rem;
     font-family: var(--sans);
     font-size: 0.85rem;
     color: var(--muted);
   }
-  .snr-row input { width: 100%; accent-color: var(--accent); margin: 0; }
+  .snr-row input { width: 100%; min-height: 1.5rem; accent-color: var(--accent); margin: 0; }
   .snr-row output { text-align: right; font-variant-numeric: tabular-nums; color: var(--ink); }
-  .emblem figcaption { font-family: var(--sans); font-size: 0.8rem; color: var(--muted); line-height: 1.45; margin-top: 0.4rem; }
-  .emblem figcaption .ser { display: block; margin-top: 0.15rem; font-variant-numeric: tabular-nums; }
+  .emblem figcaption {
+    padding-top: 0.7rem;
+    border-top: 1px solid var(--rule);
+    color: var(--muted);
+    font: 0.76rem/1.5 var(--sans);
+  }
+  .emblem .ser { display: block; margin-top: 0.2rem; font-variant-numeric: tabular-nums; }
 
   /* section navigation */
   nav.sections {
@@ -149,50 +169,61 @@
     display: flex;
     gap: 0.2rem 1.4rem;
     flex-wrap: wrap;
-    padding-block: 0.65rem;
+    padding-block: 0.85rem;
     font-family: var(--sans);
     font-size: 0.875rem;
   }
   nav.sections a { color: var(--muted); text-decoration: none; }
   nav.sections a:hover { color: var(--accent); }
 
-  /* ---------- sections ---------- */
-  main { padding-block: 0.5rem 1rem; }
-  section { margin-top: 3rem; scroll-margin-top: 3.5rem; }
+  /* Section headings and reading rhythm */
+  main { padding-bottom: 1rem; }
+  section { margin-top: clamp(3.2rem, 6vw, 5rem); scroll-margin-top: 4rem; }
   h2 {
-    position: relative;
-    font-family: var(--sans);
-    font-size: 1rem;
-    font-weight: 600;
-    margin: 0 0 1.1rem;
-    padding-bottom: 0.45rem;
+    font: 650 0.93rem/1.4 var(--sans);
+    letter-spacing: 0.01em;
+    margin: 0 0 1.65rem;
+    padding-bottom: 0.7rem;
     border-bottom: 1px solid var(--rule);
   }
-  h2::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -1px;
-    width: 2rem;
-    height: 2px;
-    background: var(--accent);
-  }
   h3 { font-family: var(--display); font-size: 1.25rem; font-weight: 600; line-height: 1.35; margin: 0 0 0.2rem; }
-  .prose { max-width: 42rem; }
-  .prose p { margin: 0 0 0.9rem; }
-  .group { font-family: var(--sans); font-size: 0.85rem; color: var(--muted); margin: 1.8rem 0 0.8rem; }
+  .group { font: 600 0.86rem/1.4 var(--sans); color: var(--muted); margin: 2rem 0 1rem; }
   h2 + .group { margin-top: 0; }
 
   /* dated lists: news and talks */
-  .dated { list-style: none; margin: 0; padding: 0; max-width: 46rem; }
-  .dated li { display: grid; grid-template-columns: 5.5rem minmax(0, 1fr); gap: 1rem; padding: 0.3rem 0; }
+  .dated { list-style: none; margin: 0; padding: 0; max-width: 53rem; }
+  .dated li { display: grid; grid-template-columns: 6.5rem minmax(0, 1fr); gap: 1rem; padding: 0.62rem 0; }
+  .dated li:first-child { padding-top: 0; }
+  .dated li + li { border-top: 1px solid var(--rule); }
   .dated time { font-family: var(--sans); font-size: 0.85rem; color: var(--muted); padding-top: 0.2rem; font-variant-numeric: tabular-nums; }
   .dated .where { display: block; color: var(--muted); }
 
-  /* research figure */
-  figure.system { margin: 1.1rem 0 1.3rem; }
-  .diagram { background: var(--box); border-radius: 8px; padding: 0.75rem; overflow-x: auto; }
+  /* Current study and system figure */
+  .research-intro {
+    display: grid;
+    grid-template-columns: minmax(0, 1.7fr) minmax(13rem, 0.8fr);
+    align-items: start;
+    gap: clamp(1.5rem, 5vw, 4rem);
+  }
+  .research-intro h3 { font-size: clamp(1.75rem, 3.2vw, 2.55rem); line-height: 1.08; letter-spacing: -0.025em; }
+  .research-intro .meta { margin-top: 0.65rem; }
+  .research-intro p { margin: 0.75rem 0 0; max-width: 59ch; }
+  .research-facts { margin: 0; padding-left: 1.3rem; border-left: 1px solid var(--rule); }
+  .research-facts div {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.65rem;
+    padding-block: 0.42rem;
+  }
+  .research-facts div + div { border-top: 1px solid var(--rule); }
+  .research-facts dt { color: var(--muted); font: 0.8rem/1.4 var(--sans); }
+  .research-facts dd { margin: 0; font-size: 1.35rem; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  figure.system { margin: 1.6rem 0 0; }
+  .diagram { background: var(--box); border: 1px solid var(--rule); border-radius: 12px; padding: 0.85rem; overflow-x: auto; }
   .diagram svg { display: block; width: 100%; min-width: 560px; height: auto; }
+  .diagram-hint { display: none; margin: 0 0 0.45rem; color: var(--muted); font: 0.78rem/1.4 var(--sans); }
+  @media (max-width: 640px) { .diagram-hint { display: block; } }
   figcaption.cap { font-family: var(--sans); font-size: 0.85rem; color: var(--muted); line-height: 1.5; margin-top: 0.6rem; max-width: 46rem; }
   svg .bx { fill: var(--paper); stroke: var(--rule-strong); stroke-width: 1; }
   svg .lbl { font-family: var(--sans); font-size: 12px; font-weight: 600; fill: var(--ink); }
@@ -207,12 +238,14 @@
   svg .n { fill: var(--muted); fill-opacity: 0.6; }
 
   /* publications with thumbnails */
-  .pubs { list-style: none; margin: 0; padding: 0; display: grid; gap: 2.1rem; }
-  .pub { display: grid; grid-template-columns: 11.5rem minmax(0, 1fr); gap: 1.5rem; align-items: start; }
+  .pubs { list-style: none; margin: 0; padding: 0; }
+  .pub { display: grid; grid-template-columns: 11.5rem minmax(0, 1fr); gap: 1.65rem; align-items: start; padding-block: 1.1rem; }
+  .pub:first-child { padding-top: 0; }
+  .pub + .pub { border-top: 1px solid var(--rule); }
   .thumb { display: block; background: var(--box); border: 1px solid var(--rule); border-radius: 8px; aspect-ratio: 8 / 5; max-width: 100%; overflow: hidden; transition: border-color 0.15s; }
   .thumb:hover { border-color: var(--rule-strong); }
   .thumb svg { display: block; width: 100%; height: 100%; }
-  .pub[id] { scroll-margin-top: 5.5rem; }
+  .pub[id] { scroll-margin-top: 6.2rem; }
   .rate-thumb {
     display: grid;
     grid-template-rows: minmax(0, 1fr) auto;
@@ -240,16 +273,16 @@
   }
   .rate-thumb-label { margin-top: 0.45rem; font: 0.7rem/1.2 var(--sans); }
   .pub-body { min-width: 0; line-height: 1.5; }
-  .pub .t { display: block; font-family: var(--display); font-weight: 600; font-size: 1.06rem; line-height: 1.4; margin-bottom: 0.3rem; }
+  .pub .t { display: block; font-family: var(--display); font-weight: 600; font-size: 1.2rem; line-height: 1.33; margin-bottom: 0.35rem; }
   .pub .a { display: block; font-size: 0.97rem; }
-  .pub .v { display: block; font-size: 0.97rem; color: var(--muted); }
+  .pub .v { display: block; font: 0.85rem/1.5 var(--sans); color: var(--muted); margin-top: 0.18rem; }
   .pub .note { font-family: var(--sans); font-size: 0.85rem; color: var(--muted); line-height: 1.55; margin: 0.55rem 0 0; max-width: 44rem; }
   .actions { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.7rem; }
   .btn {
     display: inline-flex; align-items: center;
     font-family: var(--sans); font-size: 0.8rem; line-height: 1;
-    padding: 0.42rem 0.75rem;
-    border: 1px solid var(--rule-strong); border-radius: 999px;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--rule-strong); border-radius: 5px;
     color: var(--ink); background: var(--paper);
     text-decoration: none; cursor: pointer;
   }
@@ -286,13 +319,18 @@
   footer .wrap { padding-block: 0.9rem 2rem; font-family: var(--sans); font-size: 0.8rem; color: var(--muted); }
 
   @media (max-width: 760px) {
-    header.hero { grid-template-columns: 1fr; gap: 1.75rem; padding-block: 2.25rem 1.5rem; }
-    .emblem { max-width: 17rem; }
-    nav.sections .wrap { flex-wrap: nowrap; overflow-x: auto; white-space: nowrap; scrollbar-width: none; }
-    h1 { font-size: 2.15rem; }
+    header.hero { grid-template-columns: 1fr; gap: 1.7rem; padding-block: 2.75rem 1.8rem; }
+    .emblem { width: 100%; max-width: 23rem; }
+    .emblem svg { max-width: 11rem; }
+    nav.sections .wrap { gap: 0.3rem 1rem; padding-block: 0.6rem; }
+    section { scroll-margin-top: 5.25rem; }
+    .pub[id] { scroll-margin-top: 7.25rem; }
+    .research-intro { grid-template-columns: 1fr; gap: 1rem; }
+    .research-facts { padding-left: 0; border-left: 0; }
+    .research-facts div { padding-block: 0.3rem; }
     .pub { grid-template-columns: minmax(0, 1fr); gap: 0.8rem; }
-    .thumb { max-width: 15rem; }
-    .dated li { grid-template-columns: 1fr; gap: 0; padding: 0.45rem 0; }
+    .thumb { max-width: 13rem; }
+    .dated li { grid-template-columns: 1fr; gap: 0; padding: 0.63rem 0; }
     .honours li { flex-direction: column; gap: 0; padding: 0.35rem 0; }
     .honours .yr { padding-top: 0; }
   }
@@ -300,13 +338,25 @@
 </head>
 <body>
 
+<nav class="sections" aria-label="Sections">
+  <div class="wrap">
+    <a href="#research">Research</a>
+    <a href="#news">News</a>
+    <a href="#pubs">Publications</a>
+    <a href="#talks">Talks</a>
+    <a href="#teaching">Teaching</a>
+    <a href="#edu">Education</a>
+    <a href="#honours">Honours</a>
+  </div>
+</nav>
+
 <div class="wrap">
   <header class="hero">
     <div class="hero-text">
       <h1>Qikai Wang</h1>
-      <p class="role">Final-year undergraduate, Belarusian State University of Informatics and Radioelectronics, Minsk</p>
-      <p>I study at BSUIR in a 2+2 joint programme with Luoyang Normal University (LYNU), China. I work on semantic communication and deep joint source–channel coding: learning to send images over noisy wireless links so that a detector at the receiver still finds what it needs. My current project is rate-adaptive transmission for UAV-based vehicle detection, advised by Jun Ma at BSUIR.</p>
-      <p class="interests">Interests: semantic and task-oriented communication, deep joint source–channel coding (DJSCC), and communication-efficient vision for UAVs.</p>
+      <p class="role">Final-year undergraduate · Minsk, Belarus</p>
+      <p class="lead">I study how to send aerial images over noisy wireless links while preserving the information a vehicle detector needs.</p>
+      <p class="bio">I’m completing a 2+2 programme at the Belarusian State University of Informatics and Radioelectronics (BSUIR) and Luoyang Normal University. Jun Ma at BSUIR advises my work on semantic communication and deep joint source–channel coding.</p>
       <div class="links">
         <span class="email">wangqikai741 [at] gmail [dot] com</span>
         <a href="https://orcid.org/0009-0004-8450-7876">ORCID</a>
@@ -316,7 +366,8 @@
       </div>
     </div>
 
-    <figure class="emblem">
+    <figure class="emblem" aria-labelledby="demo-title">
+      <p class="demo-title" id="demo-title">16-QAM over an AWGN channel</p>
       <svg id="constellation" viewBox="0 0 200 200" role="img" aria-labelledby="const-title">
         <title id="const-title">16-QAM constellation: ideal symbol positions and received symbols after an AWGN channel</title>
         <rect class="frame" x="0" y="0" width="200" height="200" rx="10"/>
@@ -329,54 +380,38 @@
       </svg>
       <div class="snr-row">
         <label for="snr">SNR</label>
-        <input id="snr" type="range" min="0" max="30" step="1" value="20">
+        <input id="snr" type="range" min="0" max="30" step="1" value="20" aria-describedby="demo-description">
         <output id="snr-value" for="snr">20 dB</output>
       </div>
-      <figcaption>Received 16-QAM symbols. Move the slider to change the channel SNR. <span class="ser" id="ser"></span></figcaption>
+      <figcaption id="demo-description">Move the slider to see how noise spreads the received symbols around the ideal points.<span class="ser" id="ser"></span></figcaption>
     </figure>
   </header>
 </div>
 
-<nav class="sections" aria-label="Sections">
-  <div class="wrap">
-    <a href="#news">News</a>
-    <a href="#research">Research</a>
-    <a href="#pubs">Publications</a>
-    <a href="#talks">Talks</a>
-    <a href="#teaching">Teaching</a>
-    <a href="#edu">Education</a>
-    <a href="#honours">Honours</a>
-  </div>
-</nav>
-
 <main class="wrap">
-
-  <section id="news" aria-labelledby="news-h">
-    <h2 id="news-h">News</h2>
-    <ul class="dated">
-      <li>
-        <time datetime="2026-11">Nov 2026</time>
-        <span>Our paper on blind rate-adaptive semantic communication for UAV vehicle detection was accepted at <a href="#icccs-2027">ICCCS 2027</a>.</span>
-      </li>
-      <li><time datetime="2026-07">Jul 2026</time><span>Our paper on wearable-insole gait assessment for Parkinson's disease was published in <i>Biosensors</i>.</span></li>
-      <li><time datetime="2026-05">May 2026</time><span>Received a Letter of Gratitude from BSUIR for my talk at the 62nd BSUIR Scientific Conference.</span></li>
-      <li><time datetime="2026-04">Apr 2026</time><span>Two sole-author papers on early versions of my semantic communication system appeared at the 62nd BSUIR Scientific Conference and the TPOI international seminar, both in Minsk.</span></li>
-      <li><time datetime="2025-12">Dec 2025</time><span>Awarded China's National Scholarship for the 2024–2025 academic year.</span></li>
-      <li><time datetime="2025-11">Nov 2025</time><span>Gave a talk comparing YOLOv9–YOLOv12 at the New Horizons 2025 Belarusian-Chinese Youth Innovation Forum, BNTU, Minsk.</span></li>
-      <li><time datetime="2025-09">Sep 2025</time><span>Started years 3–4 of my degree at BSUIR, Minsk, with a China Scholarship Council scholarship.</span></li>
-    </ul>
-  </section>
 
   <section id="research" aria-labelledby="research-h">
     <h2 id="research-h">Research</h2>
-    <h3>Rate-adaptive semantic communication for UAV vehicle detection</h3>
-    <div class="meta">Undergraduate research, March 2026 – present</div>
+    <div class="research-intro">
+      <div>
+        <h3>Rate-adaptive semantic communication for UAV vehicle detection</h3>
+        <div class="meta">Undergraduate research · March 2026 – present</div>
+        <p>One lightweight codec supports five bandwidth ratios. The rate selector combines current image content with a blind SNR estimate from the previous frame. We measured vehicle detection accuracy with a frozen detector over a simulated AWGN channel.</p>
+        <p>The <a href="#icccs-2027">ICCCS 2027 paper</a> builds on two sole-author papers from 2026, which used a CNN encoder and a supernet covering three compression ratios.</p>
+      </div>
+      <dl class="research-facts">
+        <div><dt>Codec parameters</dt><dd>258K</dd></div>
+        <div><dt>Bandwidth ratios</dt><dd>5</dd></div>
+        <div><dt>Detection metric</dt><dd>mAP@0.5</dd></div>
+      </dl>
+    </div>
 
     <figure class="system">
-      <div class="diagram">
+      <p class="diagram-hint">Scroll sideways to see the full system diagram.</p>
+      <div class="diagram" tabindex="0" role="region" aria-label="UAV communication system diagram">
         <svg viewBox="0 0 680 206" role="img" aria-labelledby="figtitle figdesc">
           <title id="figtitle">System overview</title>
-          <desc id="figdesc">The UAV encodes a camera frame with a slimmable encoder at a bandwidth ratio chosen by a gating network. The signal crosses a noisy AWGN channel. At the ground station a decoder rebuilds the frame for a frozen YOLOv12 detector, while a blind SNR estimator sends its estimate back to the gating network in a few bits.</desc>
+          <desc id="figdesc">The UAV encodes a frame at a rate selected by the gating network. The signal crosses a simulated AWGN channel. At the ground station, the receiver reconstructs the frame for a frozen YOLOv12 detector and estimates SNR for the next rate decision.</desc>
           <defs>
             <marker id="am" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="head-m" d="M0,1 L10,5 L0,9 z"/></marker>
             <marker id="aa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="head-a" d="M0,1 L10,5 L0,9 z"/></marker>
@@ -425,22 +460,33 @@
           <path class="ln" d="M396 84 V158 H418" marker-end="url(#am)"/>
 
           <path class="fb" d="M490 178 V196 H189 V180" marker-end="url(#aa)"/>
-          <text class="fbt" x="300" y="190" text-anchor="middle">SNR estimate, fed back in a few bits</text>
+          <text class="fbt" x="300" y="190" text-anchor="middle">Previous-frame SNR feedback</text>
         </svg>
       </div>
-      <figcaption class="cap">System overview. The ground station estimates the SNR from the received symbols without pilots and feeds it back in a few bits; the gating network on the UAV then picks the bandwidth ratio from that estimate and the image content.</figcaption>
+      <figcaption class="cap">The receiver estimates SNR from the received symbols without pilots. In the simulation, the decoder is given the selected rate directly.</figcaption>
     </figure>
+  </section>
 
-    <div class="prose">
-      <p>A detector that is accurate enough is usually too heavy to run on a small UAV, so frames have to be sent to a ground station over a noisy link. I designed a lightweight slimmable codec that serves five bandwidth ratios with a single set of weights (258K parameters), and a blind rate-adaptation loop that needs no pilot symbols. The detector at the ground station stays frozen, and the system is judged by detection accuracy (mAP) rather than image quality.</p>
-      <p>The <a href="#icccs-2027">ICCCS 2027 paper</a> builds on two sole-author papers from 2026, which used a CNN encoder and a supernet covering three compression ratios.</p>
-    </div>
+  <section id="news" aria-labelledby="news-h">
+    <h2 id="news-h">News</h2>
+    <ul class="dated">
+      <li>
+        <time datetime="2026-11">Nov 2026</time>
+        <span>Our paper on blind rate-adaptive semantic communication for UAV vehicle detection was accepted at <a href="#icccs-2027">ICCCS 2027</a>.</span>
+      </li>
+      <li><time datetime="2026-07">Jul 2026</time><span>Our paper on wearable-insole gait assessment for Parkinson's disease was published in <i>Biosensors</i>.</span></li>
+      <li><time datetime="2026-05">May 2026</time><span>Received a Letter of Gratitude from BSUIR for my talk at the 62nd BSUIR Scientific Conference.</span></li>
+      <li><time datetime="2026-04">Apr 2026</time><span>Two sole-author papers on early versions of my semantic communication system appeared at the 62nd BSUIR Scientific Conference and the TPOI international seminar, both in Minsk.</span></li>
+      <li><time datetime="2025-12">Dec 2025</time><span>Awarded China's National Scholarship for the 2024–2025 academic year.</span></li>
+      <li><time datetime="2025-11">Nov 2025</time><span>Gave a talk comparing YOLOv9–YOLOv12 at the New Horizons 2025 Belarusian-Chinese Youth Innovation Forum, BNTU, Minsk.</span></li>
+      <li><time datetime="2025-09">Sep 2025</time><span>Started years 3–4 of my degree at BSUIR, Minsk, with a China Scholarship Council scholarship.</span></li>
+    </ul>
   </section>
 
   <section id="pubs" aria-labelledby="pubs-h">
     <h2 id="pubs-h">Publications</h2>
 
-    <div class="group">Journal article</div>
+    <h3 class="group">Journal article</h3>
     <ul class="pubs">
       <li class="pub">
         <a class="thumb" href="https://doi.org/10.3390/bios16070391" aria-label="Open the Biosensors article">
@@ -492,7 +538,7 @@
       </li>
     </ul>
 
-    <div class="group">Conference papers</div>
+    <h3 class="group">Conference papers</h3>
     <ul class="pubs">
       <li class="pub" id="icccs-2027">
         <a class="thumb rate-thumb" href="#research" aria-label="See the rate-adaptive codec research overview">
@@ -686,19 +732,19 @@
   <section id="honours" aria-labelledby="honours-h">
     <h2 id="honours-h">Honours and awards</h2>
 
-    <div class="group">Scholarships</div>
+    <h3 class="group">Scholarships</h3>
     <ul class="honours">
       <li><span>National Scholarship, Ministry of Education of China</span><span class="yr">2024–2025</span></li>
       <li><span>China Scholarship Council (CSC) scholarship for undergraduate study at BSUIR</span><span class="yr">2025–2027</span></li>
       <li><span>National Encouragement Scholarship, Department of Education of Henan Province</span><span class="yr">2023–2024</span></li>
     </ul>
 
-    <div class="group">Research</div>
+    <h3 class="group">Research</h3>
     <ul class="honours">
       <li><span>Letter of Gratitude from BSUIR, signed by the Vice-Rector for Research, for a successful talk at the 62nd BSUIR Scientific Conference</span><span class="yr">2026</span></li>
     </ul>
 
-    <div class="group">Competitions</div>
+    <h3 class="group">Competitions</h3>
     <ul class="honours">
       <li><span>Special Prize (team), 17th "Challenge Cup" Henan College Students' Extracurricular Academic Science and Technology Works Competition</span><span class="yr">2025</span></li>
       <li><span>Third Prize (team), China International College Students' Innovation Competition (2025), Henan regional selection round</span><span class="yr">2025</span></li>
@@ -756,25 +802,10 @@
         p.c.setAttribute('cy', Math.min(196, Math.max(4, C - S * uq)).toFixed(1));
       });
       out.textContent = Math.round(snrDb) + ' dB';
-      serEl.textContent = wrong + ' of ' + pts.length + ' symbols land in the wrong decision region.';
+      serEl.textContent = wrong + ' of ' + pts.length + ' received symbols land outside their decision regions.';
     }
-    var animating = false;
-    slider.addEventListener('input', function () { animating = false; draw(+slider.value); });
-    var target = +slider.value;
-    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduce || !window.requestAnimationFrame) { draw(target); return; }
-    draw(0);
-    animating = true;
-    var t0 = null, dur = 1800;
-    function step(t) {
-      if (!animating) return;
-      if (t0 === null) t0 = t;
-      var k = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - k, 3), v = target * e;
-      slider.value = Math.round(v);
-      draw(v);
-      if (k < 1) requestAnimationFrame(step); else animating = false;
-    }
-    requestAnimationFrame(step);
+    slider.addEventListener('input', function () { draw(+slider.value); });
+    draw(+slider.value);
   })();
 </script>
 <script>
