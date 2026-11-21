@@ -212,6 +212,33 @@
   .thumb { display: block; background: var(--box); border: 1px solid var(--rule); border-radius: 8px; aspect-ratio: 8 / 5; max-width: 100%; overflow: hidden; transition: border-color 0.15s; }
   .thumb:hover { border-color: var(--rule-strong); }
   .thumb svg { display: block; width: 100%; height: 100%; }
+  .pub[id] { scroll-margin-top: 5.5rem; }
+  .rate-thumb {
+    display: grid;
+    grid-template-rows: minmax(0, 1fr) auto;
+    justify-items: center;
+    padding: 0.65rem 0.75rem 0.45rem;
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .rate-bars {
+    display: flex;
+    align-items: end;
+    justify-content: center;
+    gap: 0.38rem;
+    width: 100%;
+    max-width: 7rem;
+    border-bottom: 1px solid var(--rule-strong);
+    margin-top: 0.35rem;
+  }
+  .rate-bars > span {
+    width: 0.82rem;
+    height: var(--rate);
+    border-radius: 2px 2px 0 0;
+    background: var(--accent);
+    opacity: 0.8;
+  }
+  .rate-thumb-label { margin-top: 0.45rem; font: 0.7rem/1.2 var(--sans); }
   .pub-body { min-width: 0; line-height: 1.5; }
   .pub .t { display: block; font-family: var(--display); font-weight: 600; font-size: 1.06rem; line-height: 1.4; margin-bottom: 0.3rem; }
   .pub .a { display: block; font-size: 0.97rem; }
@@ -327,6 +354,10 @@
   <section id="news" aria-labelledby="news-h">
     <h2 id="news-h">News</h2>
     <ul class="dated">
+      <li>
+        <time datetime="2026-11">Nov 2026</time>
+        <span>Our paper on blind rate-adaptive semantic communication for UAV vehicle detection was accepted at <a href="#icccs-2027">ICCCS 2027</a>.</span>
+      </li>
       <li><time datetime="2026-07">Jul 2026</time><span>Our paper on wearable-insole gait assessment for Parkinson's disease was published in <i>Biosensors</i>.</span></li>
       <li><time datetime="2026-05">May 2026</time><span>Received a Letter of Gratitude from BSUIR for my talk at the 62nd BSUIR Scientific Conference.</span></li>
       <li><time datetime="2026-04">Apr 2026</time><span>Two sole-author papers on early versions of my semantic communication system appeared at the 62nd BSUIR Scientific Conference and the TPOI international seminar, both in Minsk.</span></li>
@@ -402,16 +433,12 @@
 
     <div class="prose">
       <p>A detector that is accurate enough is usually too heavy to run on a small UAV, so frames have to be sent to a ground station over a noisy link. I designed a lightweight slimmable codec that serves five bandwidth ratios with a single set of weights (258K parameters), and a blind rate-adaptation loop that needs no pilot symbols. The detector at the ground station stays frozen, and the system is judged by detection accuracy (mAP) rather than image quality.</p>
-      <p>Early versions of the system, with a CNN encoder and a supernet covering three compression ratios, appeared in two sole-author papers in 2026 (see Publications).</p>
+      <p>The <a href="#icccs-2027">ICCCS 2027 paper</a> builds on two sole-author papers from 2026, which used a CNN encoder and a supernet covering three compression ratios.</p>
     </div>
   </section>
 
   <section id="pubs" aria-labelledby="pubs-h">
     <h2 id="pubs-h">Publications</h2>
-
-    <div class="group">Accepted conference paper</div>
-    <p><em>Blind Rate-Adaptive Semantic Communication with a Lightweight Slimmable Codec for UAV-Based Vehicle Detection</em>.
-      Accepted at ICCCS 2027. First and corresponding author.</p>
 
     <div class="group">Journal article</div>
     <ul class="pubs">
@@ -467,6 +494,27 @@
 
     <div class="group">Conference papers</div>
     <ul class="pubs">
+      <li class="pub" id="icccs-2027">
+        <a class="thumb rate-thumb" href="#research" aria-label="See the rate-adaptive codec research overview">
+          <span class="rate-bars" aria-hidden="true">
+            <span style="--rate: 25%"></span>
+            <span style="--rate: 37.5%"></span>
+            <span style="--rate: 50%"></span>
+            <span style="--rate: 75%"></span>
+            <span style="--rate: 100%"></span>
+          </span>
+          <span class="rate-thumb-label">One codec, five rates</span>
+        </a>
+        <div class="pub-body">
+          <span class="t">Blind Rate-Adaptive Semantic Communication with a Lightweight Slimmable Codec for UAV-Based Vehicle Detection</span>
+          <span class="a"><b>Qikai Wang</b>, Chi Zhang, Qicheng Guo, Jun Ma</span>
+          <span class="v">Accepted at <i>ICCCS 2027</i> · First and corresponding author</span>
+          <p class="note">A lightweight codec serves five bandwidth ratios with one set of weights. The transmission rate adapts to the image content and blind SNR feedback.</p>
+          <div class="actions">
+            <a class="btn" href="#research">Research overview</a>
+          </div>
+        </div>
+      </li>
       <li class="pub">
         <a class="thumb" href="https://libeldoc.bsuir.by/handle/123456789/63776" aria-label="Open the paper in the BSUIR repository">
           <svg viewBox="0 0 200 125" aria-hidden="true">
